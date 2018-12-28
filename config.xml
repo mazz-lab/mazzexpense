@@ -2,7 +2,7 @@
 <widget id="com.mazz.expense" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>My Expense Book</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="mazztechinfo@gmail.com" href=""></author>
+    <author email="mazztechinfo@gmail.com" href="" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

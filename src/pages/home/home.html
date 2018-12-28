@@ -7,8 +7,31 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+
+    <ion-card>
+
+        <ion-grid>
+
+            <ion-row >
+                <ion-col id="card-divder-border" center text-center  width-25>Income</ion-col>
+                
+
+                <ion-col id="card-divder-border" center text-center  width-25>Expense</ion-col>
+                <ion-col  center text-center  width-40>Balance</ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
+                  <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
+                  <ion-col  center text-center width-50>0</ion-col>
+                </ion-row>
+              </ion-grid>
+    </ion-card>
+   
+    
+
+    
   <ion-fab bottom right >
     <button ion-fab (click)="addexpense()"><ion-icon name="add"></ion-icon> </button>
   </ion-fab>
-</ion-content>
+</ion-content>  
