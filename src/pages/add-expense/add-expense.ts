@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddExpensePage } from '../add-expense/add-expense';
+
 /**
- * Generated class for the ExpenseListPage page.
+ * Generated class for the AddExpensePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,16 @@ import { AddExpensePage } from '../add-expense/add-expense';
 
 @IonicPage()
 @Component({
-  selector: 'page-expense-list',
-  templateUrl: 'expense-list.html',
+  selector: 'page-add-expense',
+  templateUrl: 'add-expense.html',
 })
-export class ExpenseListPage {
+export class AddExpensePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  addexpense(){
-    this.navCtrl.push(AddExpensePage);
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExpenseListPage');
+    console.log('ionViewDidLoad AddExpensePage');
   }
 
 }
