@@ -1,0 +1,7 @@
+{
+  "name": "mazzexpense",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
