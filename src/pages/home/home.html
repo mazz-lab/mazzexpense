@@ -3,32 +3,113 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Dashboard</ion-title>
+    
+    <ion-toolbar>
+
+
+    
+
+      <ion-item width-25>
+        
+        <ion-datetime width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
+      </ion-item>
+    </ion-toolbar>
+    
+    
+   
+     
+
+      
   </ion-navbar>
 </ion-header>
 
-<ion-content >
-
+<ion-content  no-paading >
     <ion-card>
 
-        <ion-grid>
+        <ion-card-content>
+            <ion-grid>
 
-            <ion-row >
-                <ion-col id="card-divder-border" center text-center  width-25>Income</ion-col>
-                
-
-                <ion-col id="card-divder-border" center text-center  width-25>Expense</ion-col>
-                <ion-col  center text-center  width-40>Balance</ion-col>
-              </ion-row>
-              <ion-row>
-                  <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
-                  <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
-                  <ion-col  center text-center width-50>0</ion-col>
-                </ion-row>
-              </ion-grid>
-    </ion-card>
-   
+                <ion-row >
+                    <ion-col  center text-center  width-25>Income</ion-col>
+                    
     
+                    <ion-col  center text-center  width-25>Expense</ion-col>
+                    <ion-col  center text-center  width-40>Balance</ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
+                      <ion-col  center text-center width-50>0</ion-col>
+                    </ion-row>
+                  </ion-grid>
+        
+      
+       
+          <!-- Add card content here! -->
+        </ion-card-content>
+      
+      </ion-card>
+   
+
+      
+
+      
+      
+
+      <ion-card no-padding  >
+
+          <ion-card-header  >
+              <ion-grid no-padding style="font-size:8px">
+  
+                  <ion-row >
+                      <ion-col   text-left  width-16><span>31/12 Sat</span></ion-col>
+                      
+      
+                      <ion-col  text-left  width-42><span>Income : </span> <span>100000000</span></ion-col>
+                      <ion-col    width-42><span>Expense : </span> <span>100000000</span></ion-col>
+                    </ion-row>
+                    
+                    </ion-grid>
+          </ion-card-header>
+        
+            <ion-card-content style="font-size:10px">
+
+                <ion-list style="font-size:10px">
+                    <button ion-item>
+                      <ion-icon name="cart" item-start></ion-icon>
+                      Shopping
+                      <ion-label  item-end>dsadas</ion-label>
+                    </button>
+                
+                    <button ion-item>
+                      <ion-icon name="medical" item-start></ion-icon>
+                      Hospital
+                    </button>
+                
+                    <button ion-item>
+                      <ion-icon name="cafe" item-start></ion-icon>
+                      Cafe
+                    </button>
+                
+                    <button ion-item>
+                      <ion-icon name="paw" item-start></ion-icon>
+                      Dog Park
+                    </button>
+                
+                    <button ion-item>
+                      <ion-icon name="beer" item-start></ion-icon>
+                      Pub
+                    </button>
+                
+                    <button ion-item>
+                      <ion-icon name="planet" item-start></ion-icon>
+                      Space
+                    </button>
+                
+                  </ion-list>
+                </ion-card-content>
+
+      </ion-card>
 
     
   <ion-fab bottom right >
