@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AddIncomePage } from '../add-income/add-income';
+
 
 @IonicPage()
 @Component({
@@ -14,7 +14,7 @@ export class IncomeListPage {
   }
 
   addincome(){
-    this.navCtrl.push(AddIncomePage);
+    this.navCtrl.push('AddIncomePage');
   }
 
   ionViewDidLoad() {

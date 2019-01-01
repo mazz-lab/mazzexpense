@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddExpensePage } from '../add-expense/add-expense';
+
 /**
  * Generated class for the ExpenseListPage page.
  *
@@ -19,7 +19,7 @@ export class ExpenseListPage {
   }
 
   addexpense(){
-    this.navCtrl.push(AddExpensePage);
+    this.navCtrl.push('AddExpensePage');
   }
 
   ionViewDidLoad() {

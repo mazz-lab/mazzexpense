@@ -1,26 +1,15 @@
-<ion-header>
-  <ion-navbar>
+<ion-header color=primary>
+  <ion-navbar color=primary>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     
-    <ion-toolbar>
-
-
-    
-
-      <ion-item width-25>
+    <ion-item width-25 color=primary>
         
-        <ion-datetime width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
-      </ion-item>
-    </ion-toolbar>
-    
-    
-   
-     
-
-      
+      <ion-datetime item-start width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
+    </ion-item>
   </ion-navbar>
+  
 </ion-header>
 
 <ion-content  no-paading >
