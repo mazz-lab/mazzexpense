@@ -8,7 +8,7 @@
 
       <ion-row >
           <ion-col  text-left  width-25>
-            <ion-datetime  style="color:white;"  width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
+            <ion-datetime  style="color:white;" min="2019-01" max="2020" width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
           </ion-col>
           
           
@@ -36,9 +36,9 @@
                     <ion-col  center text-center  width-40>Balance</ion-col>
                   </ion-row>
                   <ion-row>
-                      <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
-                      <ion-col id="card-divder-border" center text-center width-25>0</ion-col>
-                      <ion-col  center text-center width-50>0</ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="income-color">{{totalRevenue.totalIncome}}</h2></ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{totalRevenue.totalExpense}}</h2></ion-col>
+                      <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{totalRevenue.totalBalance}}</h2></ion-col>
                     </ion-row>
                   </ion-grid>
         
