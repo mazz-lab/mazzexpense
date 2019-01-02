@@ -34,12 +34,23 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #3880ff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
 );
+
+// FAB background hide
+
+#ListBackdrop{
+  background-color: white !important;
+  position: fixed !important;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  opacity: 0.8
+}
 
 
 // App iOS Variables

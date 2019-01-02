@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController } from 'ionic-angular';
+import { IonicPage,NavController,FabContainer } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -12,8 +12,33 @@ export class HomePage {
     timeEnds: '1990-02-20'
   }
 
-  constructor(public navCtrl: NavController) {
+  fabButtonOpened: Boolean;
 
+  constructor(public navCtrl: NavController) {
+    this.fabButtonOpened=false;
+  }
+
+
+  openFabButton(){
+    if(this.fabButtonOpened==false){
+      this.fabButtonOpened=true;
+  }else{
+      this.fabButtonOpened=false;
+  }
+  }
+
+
+  goExpense(fab: FabContainer){
+    fab.close();
+    this.fabButtonOpened=false;
+    this.navCtrl.push('AddExpensePage');
+
+  }
+
+  goIncome(fab: FabContainer){
+    fab.close();
+    this.fabButtonOpened=false;
+    this.navCtrl.push('AddIncomePage');
   }
 
 }
