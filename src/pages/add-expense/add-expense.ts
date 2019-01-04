@@ -11,7 +11,7 @@ import { Toast } from '@ionic-native/toast';
   templateUrl: 'add-expense.html',
 })
 export class AddExpensePage {
-  data = { date:"", type:"", description:"", amount:0 };
+  data = { date:"", type:"Expense", description:"", amount:0 };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private sqlite: SQLite,
     private toast: Toast) {

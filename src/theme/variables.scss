@@ -34,14 +34,17 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #3880ff,
+  primary:    #2962FF,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  expense-color : #d62d20 ,
-  income-color : #008744 ,
-  balance-color : #ffa700 ,
+
+  expense-primary-color : #B71C1C,
+  expense-color : #C62828 ,
+  income-primary-color : #1B5E20 ,
+  income-color : #2E7D32 ,
+  balance-color : #E65100 ,
   menu-header-color : #AD3D3E,
   dashboard-color : #FF9800,
 
@@ -59,6 +62,8 @@ $colors: (
   opacity: 0.8
 }
 
+
+$font-size : 1px ! important;
 
 // App iOS Variables
 // --------------------------------------------------
@@ -104,3 +109,5 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+

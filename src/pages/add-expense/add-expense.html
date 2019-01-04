@@ -6,7 +6,7 @@
 -->
 <ion-header >
 
-  <ion-navbar color=danger>
+  <ion-navbar color=expense-color>
     <ion-title>New Expense</ion-title>
   </ion-navbar>
 
@@ -20,13 +20,7 @@
           <ion-label>Date</ion-label>
           <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="data.date" name="date" required=""></ion-datetime>
         </ion-item>
-        <ion-item>
-          <ion-label>Type</ion-label>
-          <ion-select [(ngModel)]="data.type" name="type" required="">
-            <ion-option value="Income">Income</ion-option>
-            <ion-option value="Expense">Expense</ion-option>
-          </ion-select>
-        </ion-item>
+        
         <ion-item>
           <ion-label>Description</ion-label>
           <ion-input type="text" placeholder="Description" [(ngModel)]="data.description" name="description" required="" ></ion-input>

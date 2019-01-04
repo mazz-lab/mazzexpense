@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color=secondary>
+  <ion-navbar color=income-color>
     <ion-title>New Income</ion-title>
    
     <ion-buttons end>     <ion-icon name="checkmark" color=light ></ion-icon></ion-buttons>
@@ -16,20 +16,14 @@
 </ion-header>
 
 
-    <ion-content nopadding>
+    <ion-content padding>
 
         <form (ngSubmit)="saveData()">
             <ion-item>
               <ion-label>Date</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="data.date" name="date" required=""></ion-datetime>
             </ion-item>
-            <ion-item>
-              <ion-label>Type</ion-label>
-              <ion-select [(ngModel)]="data.type" name="type" required="">
-                <ion-option value="Income">Income</ion-option>
-                <ion-option value="Expense">Expense</ion-option>
-              </ion-select>
-            </ion-item>
+          
             <ion-item>
               <ion-label>Description</ion-label>
               <ion-input type="text" placeholder="Description" [(ngModel)]="data.description" name="description" required="" ></ion-input>

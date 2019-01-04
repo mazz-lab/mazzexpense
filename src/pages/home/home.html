@@ -20,7 +20,7 @@
   
 </ion-header>
 
-<ion-content  no-paading >
+<ion-content  no-paading class="globel-style">
 
     <div id="ListBackdrop" *ngIf="fabButtonOpened==true" ></div> 
     <ion-card>
@@ -36,7 +36,8 @@
                     <ion-col  center text-center  width-40>Balance</ion-col>
                   </ion-row>
                   <ion-row>
-                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="income-color">{{totalIncome}}</h2></ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25>
+                        <h2  ion-text color="income-color">{{totalIncome}}</h2></ion-col>
                       <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{totalExpense}}</h2></ion-col>
                       <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{balance}}</h2></ion-col>
                     </ion-row>
@@ -48,6 +49,36 @@
         </ion-card-content>
       
       </ion-card>
+
+
+ <!-- Today expense details -->
+
+      <ion-card>
+
+          <ion-card-content>
+              <ion-grid>
+  
+                  <ion-row >
+                      <ion-col  center text-center  width-25>Today</ion-col>
+                      
+      
+                      <ion-col  center text-center  width-25>2019-01-04 Fri</ion-col>
+                      <ion-col  center text-center  width-40>Balance</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col id="card-divder-border" center text-center width-25>
+                          <h2  ion-text color="income-color">{{totalIncome}}</h2></ion-col>
+                        <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{totalExpense}}</h2></ion-col>
+                        <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{balance}}</h2></ion-col>
+                      </ion-row>
+                    </ion-grid>
+          
+        
+         
+            <!-- Add card content here! -->
+          </ion-card-content>
+        
+        </ion-card>
    
 
       
@@ -64,8 +95,13 @@
                       <ion-col   text-left  width-16><span>31/12 Sat</span></ion-col>
                       
       
-                      <ion-col  text-left  width-42><span>Income : </span> <span ion-text color="income-color">100000000</span></ion-col>
-                      <ion-col    width-42><span>Expense : </span> <span ion-text color="expense-color">100000000</span></ion-col>
+                      <ion-col  text-left  width-42><span>Income : </span>  
+                          <span ion-text color="income-color">100000000</span></ion-col>
+                      <ion-col    width-42>
+                   
+                        <span>Expense : </span> 
+                        <span ion-text color="expense-color">100000000</span>
+                      </ion-col>
                     </ion-row>
                     
                     </ion-grid>
@@ -79,7 +115,7 @@
                     Type: {{expense.type}}<br>
                     {{expense.description}}
                   </p>
-                  <h3 item-end>
+                  <h3 ion-text  [color]="expense.type==expense ? 'expense-color' : 'income-color'"   item-end>
                     ₹ {{expense.amount}}
                   </h3>
                 </ion-item>

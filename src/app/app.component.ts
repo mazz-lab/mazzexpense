@@ -32,14 +32,16 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
      
-      this.statusBar.styleDefault();
+     
             if (this.platform.is('android')) {
+              this.statusBar.styleDefault();
               this.statusBar.overlaysWebView(false);
-              this.statusBar.backgroundColorByHexString('#000000');
+              this.statusBar.backgroundColorByHexString('#0D47A1');
+              this.splashScreen.hide();
             }
             
    
-      this.splashScreen.hide();
+      
     });
   }
 
