@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, FabContainer } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { DatePipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -13,18 +14,36 @@ export class HomePage {
   totalIncome = 0.00;
   totalExpense = 0.00;
   balance = 0.00;
-  totalRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
+
+
+  WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   today = new Date().toISOString();
   month = this.today; //months from 1-12
+
+
+   curr: any = new Date; // get current date
+ first:any = this.curr.getDate() - this.curr.getDay(); // First day is the day of the month - the day of the week
+ last : any = this.first + 6; // last day is the first day + 6
+
+ firstday  = new Date(this.curr.setDate(this.first)).toUTCString();
+ lastday = new Date(this.curr.setDate(this.last)).toUTCString();
+  
+
+  
+  latest_date : any =this.datepipe.transform(this.today, 'dd/MM/yyyy E');
+  week_start : any =this.datepipe.transform(this.firstday, 'dd/MM');
+  week_end : any =this.datepipe.transform(this.lastday, 'dd/MM');
   public event = {
     month: this.today,
+    today:this.latest_date,
+    this_week:this.week_start+' - '+this.week_end,
 
   }
 
   fabButtonOpened: Boolean;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite ) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe ) {
     this.fabButtonOpened = false;
 
 
@@ -88,6 +107,7 @@ export class HomePage {
           }
         })
         .catch(e => console.log(e));
+
       db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense"', [])
         .then(res => {
           if (res.rows.length > 0) {
@@ -95,6 +115,17 @@ export class HomePage {
             this.balance = this.totalIncome - this.totalExpense;
           }
         })
+
+
+        db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date BETWEEN "2019-01-01" AND "2019-01-03"', [])
+        .then(res => {
+          if (res.rows.length > 0) {
+            this.WeekRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
+           
+          }
+        })
+
+
     }).catch(e => console.log(e));
   }
 
