@@ -10,10 +10,10 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 export class HomePage {
 
   expenses: any = [];
-  totalIncome = 0;
-  totalExpense = 0;
-  balance = 0;
-  totalRevenue = { totalIncome: 0, totalExpense: 0, totalBalance: 0 };
+  totalIncome = 0.00;
+  totalExpense = 0.00;
+  balance = 0.00;
+  totalRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   today = new Date().toISOString();
   month = this.today; //months from 1-12
@@ -83,7 +83,7 @@ export class HomePage {
       db.executeSql('SELECT SUM(amount) AS totalIncome FROM expense WHERE type="Income"', [])
         .then(res => {
           if (res.rows.length > 0) {
-            this.totalIncome = parseInt(res.rows.item(0).totalIncome);
+            this.totalIncome = parseFloat(res.rows.item(0).totalIncome);
             this.balance = this.totalIncome - this.totalExpense;
           }
         })
@@ -91,7 +91,7 @@ export class HomePage {
       db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense"', [])
         .then(res => {
           if (res.rows.length > 0) {
-            this.totalExpense = parseInt(res.rows.item(0).totalExpense);
+            this.totalExpense = parseFloat(res.rows.item(0).totalExpense);
             this.balance = this.totalIncome - this.totalExpense;
           }
         })

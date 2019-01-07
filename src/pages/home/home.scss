@@ -1,11 +1,39 @@
 page-home {
+    .ion-contents {
+  background-color: #EEEEEE;
+    }
 
 
+    .total-expense-card{
+        padding: 0%;
+        font-size:12px;
+        font-weight: 600;
 
-ion-card {
-    padding: 0 px;
+    }
 
-    font-size : 1 px ! important;
+    
+
+    ion-card {
+        padding: 0%;
+    }
+
+
+.today-card-content{
+    padding: 0%;
+    ion-item{
+        font-size:12px;
+        font-weight: 600;
+    }
+
+    ion-col,h2{
+        font-size:10px;
+        font-weight: 700;
+    }
+}
+
+
+ion-content.cards-bg {
+  background-color: #1313cc;
 }
 
     .vp-row {
