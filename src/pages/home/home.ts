@@ -17,6 +17,7 @@ export class HomePage {
 
 
   WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
+  TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   today = new Date().toISOString();
   month = this.today; //months from 1-12
@@ -34,6 +35,10 @@ export class HomePage {
   latest_date : any =this.datepipe.transform(this.today, 'dd/MM/yyyy E');
   week_start : any =this.datepipe.transform(this.firstday, 'dd/MM');
   week_end : any =this.datepipe.transform(this.lastday, 'dd/MM');
+
+  week_start_day : any =this.datepipe.transform(this.firstday, 'yyyy-MM-dd');
+  week_end_end : any =this.datepipe.transform(this.lastday, 'yyyy-MM-dd');
+  today_full : any =this.datepipe.transform(this.today, 'yyyy-MM-dd');
   public event = {
     month: this.today,
     today:this.latest_date,
@@ -107,7 +112,7 @@ export class HomePage {
           }
         })
         .catch(e => console.log(e));
-
+        
       db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense"', [])
         .then(res => {
           if (res.rows.length > 0) {
@@ -116,15 +121,43 @@ export class HomePage {
           }
         })
 
+// Week report income
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Income" and date >= "'+this.week_start_day+'" and date <= "'+this.week_end_end+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.WeekRevenue.totalIncome = parseFloat(res.rows.item(0).totalExpense);
+   // this.balance = this.totalIncome - this.totalExpense;
+  }
+})
 
-        db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date BETWEEN "2019-01-01" AND "2019-01-03"', [])
-        .then(res => {
-          if (res.rows.length > 0) {
-            this.WeekRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
-           
-          }
-        })
+// week revenue Expense
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date >= "'+this.week_start_day+'" and date <= "'+this.week_end_end+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.WeekRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
+    this.WeekRevenue.totalBalance = this.WeekRevenue.totalIncome - this.WeekRevenue.totalExpense;
+  }
+})
 
+
+
+// today report income
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Income" and date = "'+this.today_full+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.TodayRevenue.totalIncome = parseFloat(res.rows.item(0).totalExpense);
+   // this.balance = this.totalIncome - this.totalExpense;
+  }
+})
+
+// today revenue Expense
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date= "'+this.today_full+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.TodayRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
+    this.TodayRevenue.totalBalance = this.TodayRevenue.totalIncome - this.TodayRevenue.totalExpense;
+  }
+})
 
     }).catch(e => console.log(e));
   }
