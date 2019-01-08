@@ -47,9 +47,11 @@ export class HomePage {
   }
 
   fabButtonOpened: Boolean;
+  segmentblock:any;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe ) {
     this.fabButtonOpened = false;
+    this.segmentblock = "dashboard";
 
 
 
