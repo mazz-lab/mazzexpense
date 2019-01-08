@@ -28,7 +28,7 @@
           Dashboard
         </ion-segment-button>
         <ion-segment-button value="activity">
-            Activity
+            Transaction 
         </ion-segment-button>
       </ion-segment>
   
@@ -110,29 +110,99 @@
   
   </ion-card>
 
+  <!--All Transection-->
 
-  <ion-card no-padding  *ngSwitchCase="'activity'" >
+  <ion-card  class="allTansection" *ngSwitchCase="'activity'" >
 
       <ion-card-header  >
-          <ion-grid  style="font-size:8px">
+          <ion-grid class="transection-header"  >
 
               <ion-row >
-                  <ion-col   text-left  width-16><span>31/12 Sat</span></ion-col>
+                  <ion-col  center text-center  width-25>
+                    <span>Income</span>
+                    </ion-col>
                   
   
-                  <ion-col  text-left  width-42><span>Income : </span>  
-                      <span ion-text color="income-color">100000000</span></ion-col>
-                  <ion-col    width-42>
+                  <ion-col  center text-center  width-25>
+                      <span> Expense</span>
+                  </ion-col>
+                     
+                      
+                  <ion-col center text-center  width-50>
                
-                    <span>Expense : </span> 
-                    <span ion-text color="expense-color">100000000</span>
+                    <span>  Balance</span> 
+                   
                   </ion-col>
                 </ion-row>
                 
+                <ion-row >
+                    <ion-col  center text-center  width-25><span>{{totalIncome}}</span></ion-col>
+                    
+    
+                    <ion-col  center text-center  width-25>
+                        <span ion-text color="income-color">{{totalExpense}}</span></ion-col>
+                    <ion-col   center text-center  width-50>
+                 
+                      
+                      <span ion-text color="expense-color">{{balance}}</span>
+                    </ion-col>
+                  </ion-row>
+                  
                 </ion-grid>
       </ion-card-header>
+      <ion-card-content class="transection-content" >
+           <ion-list>
+          <!-- <ion-item-sliding>
+       <ion-item >
+        
+             
+                 <h3>2019-01-01</h3>
+                <span>sdfsfdsfds</span>
+                
+             
+              <h3 ion-text  color=expense-color   item-end>
+                ₹ 1000000
+              </h3>
+            </ion-item>
 
-      <ion-list>
+            <ion-item-options side="right">
+                <button ion-button color="primary" >
+                  <ion-icon name="paper"></ion-icon>
+                </button>
+                <button ion-button color="danger" >
+                  <ion-icon name="trash"></ion-icon>
+                </button>
+              </ion-item-options>
+          </ion-item-sliding>  -->
+
+          <ion-item-sliding *ngFor="let expense of expenses; let i=index">
+     
+              <ion-item >
+                 
+                   <h3>{{expense.date}}</h3>
+                    <span>{{expense.description}}</span>
+                    
+                 
+                  <h3 ion-text  color=expense-color   item-end>
+                      <h3 ion-text  [color]="expense.type==='Expense' ? 'expense-color' : 'income-color'"   item-end>
+                          ₹ {{expense.amount}}
+                        </h3>
+                  </h3>
+                </ion-item>
+    
+                <ion-item-options side="right">
+                    <button ion-button color="primary" >
+                      <ion-icon name="paper"></ion-icon>
+                    </button>
+                    <button ion-button color="danger" >
+                      <ion-icon name="trash"></ion-icon>
+                    </button>
+                  </ion-item-options>
+              </ion-item-sliding>
+          </ion-list>
+
+
+          <!-- <ion-list>
           <ion-item-sliding *ngFor="let expense of expenses; let i=index">
             <ion-item nopadding>
               <p>
@@ -154,7 +224,9 @@
             </ion-item-options>
           </ion-item-sliding>
         </ion-list>
-    
+      
+     -->
+    </ion-card-content>
         <!-- <ion-card-content style="font-size:10px">
 
             <ion-list style="font-size:10px">

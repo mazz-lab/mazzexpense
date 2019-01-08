@@ -98,7 +98,7 @@ export class HomePage {
       db.executeSql('CREATE TABLE IF NOT EXISTS expense(rowid INTEGER PRIMARY KEY, date TEXT, type TEXT,description TEXT, amount REAL DEFAULT 0.00)', [])
         .then(res => console.log('Executed SQL'))
         .catch(e => console.log(e));
-      db.executeSql('SELECT * FROM expense ORDER BY rowid DESC', [])
+      db.executeSql('SELECT * FROM expense ORDER BY date DESC', [])
         .then(res => {
           this.expenses = [];
           for (var i = 0; i < res.rows.length; i++) {
