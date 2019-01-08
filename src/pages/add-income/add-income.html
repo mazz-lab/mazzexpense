@@ -9,16 +9,19 @@
   <ion-navbar color=income-color>
     <ion-title>New Income</ion-title>
    
-    <ion-buttons end>     <ion-icon name="checkmark" color=light ></ion-icon></ion-buttons>
+    
+    <ion-buttons right>
+        <button ion-button icon-only (click)="saveData()"><ion-icon name="checkmark"></ion-icon></button>
+      </ion-buttons>
        
   </ion-navbar>
 
 </ion-header>
 
 
-    <ion-content padding>
+    <ion-content >
 
-        <form (ngSubmit)="saveData()">
+        <form >
             <ion-item>
               <ion-label>Date</ion-label>
               <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="data.date" name="date" required=""></ion-datetime>
@@ -32,6 +35,6 @@
               <ion-label>Amount</ion-label>
               <ion-input type="number" placeholder="Amount" [(ngModel)]="data.amount" name="amount" required="" ></ion-input>
             </ion-item>
-            <button ion-button type="submit" block>Save Data</button>
+            <!-- <button ion-button type="submit" block>Save Data</button> -->
           </form>
 </ion-content>

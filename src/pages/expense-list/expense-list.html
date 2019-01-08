@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color=danger>
+  <ion-navbar color=expense-color>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -31,6 +31,6 @@
         </ion-item-sliding>
       </ion-list>
   <ion-fab bottom right >
-    <button ion-fab (click)="addexpense()"><ion-icon name="add"></ion-icon> </button>
+    <button ion-fab (click)="addexpense()" color="expense-color" ><ion-icon name="add"></ion-icon> </button>
   </ion-fab>
 </ion-content>
