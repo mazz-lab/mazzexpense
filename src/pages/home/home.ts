@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, FabContainer } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { DatePipe } from '@angular/common';
+import { DatePipe,CurrencyPipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -15,6 +15,7 @@ export class HomePage {
   totalExpense = 0.00;
   balance = 0.00;
 
+  
 
   WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
   TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
@@ -49,13 +50,18 @@ export class HomePage {
   fabButtonOpened: Boolean;
   segmentblock:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe ) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe ) {
     this.fabButtonOpened = false;
     this.segmentblock = "dashboard";
-
+   
 
 
   }
+  getCurrency(amount: number) {
+    return this.currencyPipe.transform(amount, 'INR', true, '1.2-2');
+  }
+
+ 
 
 
   openFabButton() {

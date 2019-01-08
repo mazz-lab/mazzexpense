@@ -50,9 +50,9 @@
                   </ion-row>
                   <ion-row>
                       <ion-col id="card-divder-border" center text-center width-25>
-                        <h2  ion-text color="income-color">{{totalIncome}}</h2></ion-col>
-                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{totalExpense}}</h2></ion-col>
-                      <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{balance}}</h2></ion-col>
+                        <h2  ion-text color="income-color">{{getCurrency(totalIncome)}}</h2></ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(totalExpense)}}</h2></ion-col>
+                      <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(balance)}}</h2></ion-col>
                     </ion-row>
                   </ion-grid>
         
@@ -75,9 +75,9 @@
                     </ion-row>
                     <ion-row>
                         <ion-col  center text-center width-25>
-                          <h2  ion-text color="income-color">{{TodayRevenue.totalIncome}}</h2></ion-col>
-                        <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{TodayRevenue.totalExpense }}</h2></ion-col>
-                        <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{TodayRevenue.totalBalance }}</h2></ion-col>
+                          <h2  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome)}}</h2></ion-col>
+                        <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(TodayRevenue.totalExpense) }}</h2></ion-col>
+                        <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(TodayRevenue.totalBalance) }}</h2></ion-col>
                       </ion-row>
                     </ion-grid>
          
@@ -101,9 +101,9 @@
               </ion-row>
               <ion-row>
                   <ion-col  center text-center width-25>
-                    <h2  ion-text color="income-color">{{WeekRevenue.totalIncome}}</h2></ion-col>
-                  <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{WeekRevenue.totalExpense }}</h2></ion-col>
-                  <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{WeekRevenue.totalBalance }}</h2></ion-col>
+                    <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome)}}</h2></ion-col>
+                  <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</h2></ion-col>
+                  <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</h2></ion-col>
                 </ion-row>
               </ion-grid>
     </ion-card-content>
@@ -136,15 +136,15 @@
                 </ion-row>
                 
                 <ion-row >
-                    <ion-col  center text-center  width-25><span>{{totalIncome}}</span></ion-col>
+                    <ion-col  center text-center   width-25><span ion-text color="income-color">{{getCurrency(totalIncome)}}</span></ion-col>
                     
     
                     <ion-col  center text-center  width-25>
-                        <span ion-text color="income-color">{{totalExpense}}</span></ion-col>
+                        <span ion-text color="expense-color" >{{getCurrency(totalExpense)}}</span></ion-col>
                     <ion-col   center text-center  width-50>
                  
                       
-                      <span ion-text color="expense-color">{{balance}}</span>
+                      <span ion-text color="balance-color">{{getCurrency(balance)}}</span>
                     </ion-col>
                   </ion-row>
                   
@@ -185,7 +185,7 @@
                  
                   <h3 ion-text  color=expense-color   item-end>
                       <h3 ion-text  [color]="expense.type==='Expense' ? 'expense-color' : 'income-color'"   item-end>
-                          ₹ {{expense.amount}}
+                          {{getCurrency(expense.amount)}}
                         </h3>
                   </h3>
                 </ion-item>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { DatePipe,CurrencyPipe } from '@angular/common';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
@@ -11,10 +11,21 @@ import { Toast } from '@ionic-native/toast';
 })
 export class AddIncomePage {
 
-  data = { date:"", type:"Income", description:"", amount:0 };
+  data = { date:"", type:"Income", description:"", amount:""};
+  myModelVariable = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private sqlite: SQLite,
-    private toast: Toast) {
+    private toast: Toast,private currencyPipe: CurrencyPipe) {
+  }
+
+  setCurrencyFormat(amount: number) {
+    return this.currencyPipe.transform(amount, 'INR', true, '1.2-2');
+  }
+
+  convert(event: any) {
+    console.log('old:', this.myModelVariable);
+    this.myModelVariable = event.target.value.replace(/[^\d\.]/g ,'');
+    console.log('new:', this.myModelVariable);
   }
   saveData() {
 
