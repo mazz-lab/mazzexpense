@@ -54,6 +54,17 @@
                       <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(totalExpense)}}</h2></ion-col>
                       <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(balance)}}</h2></ion-col>
                     </ion-row>
+                    <ion-row>
+                        <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        [options]="memberChartOptions"
+                        (chartHover)="chartHovered($event)"
+                        [colors]="chartColors"
+                        (chartClick)="chartClicked($event)"></canvas>
+         
+</ion-row>
                   </ion-grid>
         
         </ion-card-content>
@@ -109,6 +120,39 @@
     </ion-card-content>
   
   </ion-card>
+
+  <!-- <ion-card *ngSwitchCase="'dashboard'">
+    <ion-card-header>
+      Bar Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
+
+  
+<!-- 
+  <ion-card *ngSwitchCase="'dashboard'">
+
+      
+    <ion-card-header>
+      Doughnut Chart
+
+     
+    </ion-card-header>
+    <ion-card-content  style="padding:0%">
+        <canvas   #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngSwitchCase="'dashboard'">
+    <ion-card-header>
+      Line Chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+    </ion-card-content>
+  </ion-card> -->
 
   <!--All Transection-->
 
@@ -289,7 +333,7 @@
     </div>
 
 
-      
+   
 
       
       
