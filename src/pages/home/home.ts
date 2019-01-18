@@ -4,6 +4,8 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePipe,CurrencyPipe } from '@angular/common';
 import { Chart } from 'chart.js';
 
+  import { UtilProvider } from '../../providers/util/util';
+
 
 @IonicPage()
 @Component({
@@ -16,6 +18,7 @@ export class HomePage {
   totalIncome = 0.00;
   totalExpense = 0.00;
   balance = 0.00;
+
   
 
   @ViewChild('barCanvas') barCanvas;
@@ -39,8 +42,12 @@ export class HomePage {
   TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
   MonthlyRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
-  
   today = new Date().toISOString();
+data_final:any;
+
+
+  
+ 
   month = this.today; //months from 1-12
 
 
@@ -70,9 +77,11 @@ export class HomePage {
   fabButtonOpened: Boolean;
   segmentblock:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe ) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe
+    , public util: UtilProvider ) {
     this.fabButtonOpened = false;
     this.segmentblock = "dashboard";
+    this.data_final=this.util.getcurrentMonthStartDate();
     
   }
 

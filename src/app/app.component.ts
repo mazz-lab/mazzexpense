@@ -19,10 +19,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Dashboard', icon:'home',iconcolor:'dashboard-color', component: 'HomePage' },
-      { title: 'Card', icon:'card',iconcolor:'dashboard-color', component: 'HomePage' },
-      { title: 'Income',icon:'trending-down',iconcolor:'income-color', component: 'IncomeListPage' },
-      { title: 'Expense', icon:'trending-up',iconcolor:'expense-color',component: 'ExpenseListPage' }
+      { title: 'Dashboard', icon:'home',iconcolor:'primary', component: 'HomePage' },
+      { title: 'Cards', icon:'card',iconcolor:'primary', component: 'CardsPage' },
+      // { title: 'Income',icon:'trending-down',iconcolor:'income-color', component: 'IncomeListPage' },
+      // { title: 'Expense', icon:'trending-up',iconcolor:'expense-color',component: 'ExpenseListPage' }
       
     ];
 
