@@ -8,8 +8,9 @@
 
       <ion-row >
           <ion-col  text-left  width-25>
-            <ion-datetime  style="color:white;" min="2019-01" max="2020" width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
+            <ion-datetime  style="color:white;" min="2019-01" max="2020" (ionChange)="getchanged($event)" width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
           </ion-col>
+          <ion-col >{{cahngeddate}}</ion-col>
           
           
           </ion-row>
@@ -28,7 +29,7 @@
           Dashboard
         </ion-segment-button>
         <ion-segment-button value="activity">
-            Transaction 
+           Today 
         </ion-segment-button>
       </ion-segment>
   
@@ -54,7 +55,7 @@
                       <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(totalExpense)}}</h2></ion-col>
                       <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(balance)}}</h2></ion-col>
                     </ion-row>
-                    <ion-row>
+                    <!-- <ion-row>
                         <canvas baseChart
                         [data]="doughnutChartData"
                         [labels]="doughnutChartLabels"
@@ -64,7 +65,7 @@
                         [colors]="chartColors"
                         (chartClick)="chartClicked($event)"></canvas>
          
-</ion-row>
+</ion-row> -->
                   </ion-grid>
         
         </ion-card-content>
@@ -121,6 +122,35 @@
   
   </ion-card>
 
+
+
+
+   <!-- this Month expense details -->
+
+ <ion-card *ngSwitchCase="'dashboard'" >
+  <ion-card-content  class="today-card-content" >
+      <ion-grid style="padding:1px">
+
+          <ion-row >
+              <ion-col   text-center  width-25>This Month</ion-col>
+              
+
+              <ion-col   text-center  width-25>
+                 
+                {{firstday | date :  "MMM - yyyy" }} </ion-col>
+              <ion-col  center text-center  width-50>Balance</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col  center text-center width-25>
+                  <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome)}}</h2></ion-col>
+                <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</h2></ion-col>
+                <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</h2></ion-col>
+              </ion-row>
+            </ion-grid>
+  </ion-card-content>
+
+</ion-card>
+
   <!-- <ion-card *ngSwitchCase="'dashboard'">
     <ion-card-header>
       Bar Chart
@@ -161,7 +191,7 @@
       <ion-card-header  >
           <ion-grid class="transection-header"  >
 
-              <ion-row >
+              <!-- <ion-row >
                   <ion-col  center text-center  width-25>
                     <span>Income</span>
                     </ion-col>
@@ -177,7 +207,7 @@
                     <span>  Balance</span> 
                    
                   </ion-col>
-                </ion-row>
+                </ion-row> -->
                 
                 <ion-row >
                     <ion-col  center text-center   width-25><span ion-text color="income-color">{{getCurrency(totalIncome)}}</span></ion-col>
@@ -311,7 +341,7 @@
   </ion-card>
 
 
-<ion-fab bottom right  #fab *ngSwitchCase="'activity'">
+<ion-fab bottom right  #fab >
 <button ion-fab (click)="openFabButton()" ><ion-icon name="add"></ion-icon> </button>
  
 <ion-fab-list side="top">

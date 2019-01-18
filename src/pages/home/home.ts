@@ -25,13 +25,19 @@ export class HomePage {
     barChart: any;
     doughnutChart: any;
     lineChart: any;
+    cahngeddate: any;
   
-    ;
+    getchanged($event){
+
+      this.cahngeddate=$event.month+"-"+$event.year;
+      console.log("selected Date"+$event);
+    }
 
   
 
   WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
   TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
+  MonthlyRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   
   today = new Date().toISOString();
@@ -95,19 +101,20 @@ public chartHovered(e:any):void {
   console.log(e);
 }
 
-public doughnutChartLabels:string[];
-public doughnutChartData:number[]=[200,330,45.9];
+public doughnutChartLabels:string[]=['Icome', 'Expense', 'Balanse'];;
+public doughnutChartData:number[]=[];
 
 public doughnutChartType:string = 'doughnut';
 public chartColors: any[] = [{ backgroundColor:["#2E7D32", "#C62828", "#4A148C"] }];
 
 chartData(){
 
-   this.doughnutChartLabels = ['Icome', 'Expense', 'Balanse'];
+  // this.doughnutChartLabels = ['Icome', 'Expense', 'Balanse'];
  //this.doughnutChartData = [this.totalIncome,this.totalExpense,this.balance];
  this.doughnutChartData = [200,330,45.9];
 
 }
+
 
 
 
