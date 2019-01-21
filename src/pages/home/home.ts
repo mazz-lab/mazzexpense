@@ -40,32 +40,27 @@ export class HomePage {
 
   WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
   TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
-  MonthlyRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
+  MonthRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   today = new Date().toISOString();
 data_final:any;
 
 
-  
- 
+
   month = this.today; //months from 1-12
 
 
-   curr: any = new Date; // get current date
- first:any = this.curr.getDate() - this.curr.getDay(); // First day is the day of the month - the day of the week
- last : any = this.first + 6; // last day is the first day + 6
-
- firstday  = new Date(this.curr.setDate(this.first)).toUTCString();
- lastday = new Date(this.curr.setDate(this.last)).toUTCString();
-  
-
   
   latest_date : any =this.datepipe.transform(this.today, 'dd/MM/yyyy E');
-  week_start : any =this.datepipe.transform(this.firstday, 'dd/MM');
-  week_end : any =this.datepipe.transform(this.lastday, 'dd/MM');
+  week_start : any =this.datepipe.transform(this.util.getCurrentWeekStartDate(), 'dd/MM');
+  week_end : any =this.datepipe.transform(this.util.getCurrentWeekEndDate(), 'dd/MM');
 
-  week_start_day : any =this.datepipe.transform(this.firstday, 'yyyy-MM-dd');
-  week_end_end : any =this.datepipe.transform(this.lastday, 'yyyy-MM-dd');
+  week_start_day : any =this.datepipe.transform(this.util.getCurrentWeekStartDate(), 'yyyy-MM-dd');
+  week_end_end : any =this.datepipe.transform(this.util.getCurrentWeekEndDate(), 'yyyy-MM-dd');
+
+  month_start_day : any =this.datepipe.transform(this.util.getcurrentMonthStartDate(), 'yyyy-MM-dd');
+  month_end_end : any =this.datepipe.transform(this.util.getcurrentMonthEndDate(), 'yyyy-MM-dd');
+
   today_full : any =this.datepipe.transform(this.today, 'yyyy-MM-dd');
   public event = {
     month: this.today,
@@ -364,6 +359,27 @@ db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expen
   if (res.rows.length > 0) {
     this.TodayRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
     this.TodayRevenue.totalBalance = this.TodayRevenue.totalIncome - this.TodayRevenue.totalExpense;
+  }
+})
+
+
+
+
+// Month report income
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Income" and and date >= "'+this.month_start_day+'" and date <= "'+this.month_end_end+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.MonthRevenue.totalIncome = parseFloat(res.rows.item(0).totalExpense);
+   // this.balance = this.totalIncome - this.totalExpense;
+  }
+})
+
+// Month revenue Expense
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date >= "'+this.month_start_day+'" and date <= "'+this.month_end_end+'"', [])
+.then(res => {
+  if (res.rows.length > 0) {
+    this.MonthRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
+    this.MonthRevenue.totalBalance = this.MonthRevenue.totalIncome - this.MonthRevenue.totalExpense;
   }
 })
 

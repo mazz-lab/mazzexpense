@@ -38,17 +38,24 @@
 <!-- total expense card details -->
 <div [ngSwitch]="segmentblock">
     <ion-card *ngSwitchCase="'dashboard'">
+      <ion-card-header class="total-expense-card">
+          <ion-grid>
+
+              <ion-row  >
+                  <ion-col  center text-center  width-25>Income</ion-col>
+                  
+  
+                  <ion-col  center text-center  width-25>Expense</ion-col>
+                  <ion-col  center text-center  width-40>Balance</ion-col>
+                </ion-row>
+                </ion-grid>
+        
+      </ion-card-header>
 
         <ion-card-content class="total-expense-card">
             <ion-grid>
 
-                <ion-row >
-                    <ion-col  center text-center  width-25>Income</ion-col>
-                    
-    
-                    <ion-col  center text-center  width-25>Expense</ion-col>
-                    <ion-col  center text-center  width-40>Balance</ion-col>
-                  </ion-row>
+                
                   <ion-row>
                       <ion-col id="card-divder-border" center text-center width-25>
                         <h2  ion-text color="income-color">{{getCurrency(totalIncome)}}</h2></ion-col>
@@ -75,16 +82,24 @@
 
        <!-- Today expense details -->
       <ion-card *ngSwitchCase="'dashboard'">
+
+<ion-card-header class="today-card-content">
+    <ion-grid style="padding:1px">
+
+        <ion-row >
+            <ion-col   text-center  width-25>Today</ion-col>
+            
+
+            <ion-col   text-center  width-25>{{event.today}}</ion-col>
+            <ion-col  center text-center  width-50>Balance</ion-col>
+          </ion-row>
+          </ion-grid>
+</ion-card-header>
+
        <ion-card-content  class="today-card-content" >
               <ion-grid style="padding:1px">
 
-                  <ion-row >
-                      <ion-col   text-center  width-25>Today</ion-col>
-                      
-      
-                      <ion-col   text-center  width-25>{{event.today}}</ion-col>
-                      <ion-col  center text-center  width-50>Balance</ion-col>
-                    </ion-row>
+             
                     <ion-row>
                         <ion-col  center text-center width-25>
                           <h2  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome)}}</h2></ion-col>
@@ -101,16 +116,24 @@
  <!-- this Week expense details -->
 
  <ion-card *ngSwitchCase="'dashboard'" >
+
+  <ion-card-header class="today-card-content">
+      <ion-grid style="padding:1px">
+
+          <ion-row >
+              <ion-col   text-center  width-25>This Week</ion-col>
+              
+
+              <ion-col   text-center  width-25> {{event.this_week}} </ion-col>
+              <ion-col  center text-center  width-50>Balance</ion-col>
+            </ion-row>
+            <ion-row>
+              </ion-row>
+              </ion-grid>
+
+  </ion-card-header>
     <ion-card-content  class="today-card-content" >
         <ion-grid style="padding:1px">
-
-            <ion-row >
-                <ion-col   text-center  width-25>This Week</ion-col>
-                
-
-                <ion-col   text-center  width-25> {{event.this_week}} </ion-col>
-                <ion-col  center text-center  width-50>Balance</ion-col>
-              </ion-row>
               <ion-row>
                   <ion-col  center text-center width-25>
                     <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome)}}</h2></ion-col>
@@ -128,23 +151,29 @@
    <!-- this Month expense details -->
 
  <ion-card *ngSwitchCase="'dashboard'" >
+
+<ion-card-header class="today-card-content">
+    <ion-grid style="padding:1px">
+
+        <ion-row >
+            <ion-col   text-center  width-25>This Month</ion-col>
+            
+
+            <ion-col   text-center  width-25>
+               
+              {{today | date :  "MMM-yyyy"}}</ion-col>
+            <ion-col  center text-center  width-50>Balance</ion-col>
+          </ion-row>
+</ion-grid>
+</ion-card-header>
+
   <ion-card-content  class="today-card-content" >
       <ion-grid style="padding:1px">
-
-          <ion-row >
-              <ion-col   text-center  width-25>This Month</ion-col>
-              
-
-              <ion-col   text-center  width-25>
-                 
-                {{firstday | date :  "MMM - yyyy" }}  - {{data_final | date :  "dd - MMM"}}</ion-col>
-              <ion-col  center text-center  width-50>Balance</ion-col>
-            </ion-row>
             <ion-row>
                 <ion-col  center text-center width-25>
-                  <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome)}}</h2></ion-col>
-                <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</h2></ion-col>
-                <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</h2></ion-col>
+                  <h2  ion-text color="income-color">{{getCurrency(MonthRevenue.totalIncome)}}</h2></ion-col>
+                <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(MonthRevenue.totalExpense)}}</h2></ion-col>
+                <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(MonthRevenue.totalBalance)}}</h2></ion-col>
               </ion-row>
             </ion-grid>
   </ion-card-content>

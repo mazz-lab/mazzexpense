@@ -7,6 +7,13 @@ page-home {
     ion-card-header {
         font-weight: bold;
     }
+    ion-card-content {
+        border-top: 1px solid #01579B ;
+     }
+
+     .bordered-col {
+        border-right : 1px solid #01579B;
+    }
 
     .ion-contents{
 
