@@ -4,18 +4,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-grid style="padding: 1px"> 
+    <!-- <ion-grid style="padding: 1px"> 
 
       <ion-row >
           <ion-col  text-left  width-25>
             <ion-datetime  style="color:white;" min="2019-01" max="2020" (ionChange)="getchanged($event)" width-25 displayFormat="MMM YYYY" pickerFormat="MMM YYYY" [(ngModel)]="event.month"></ion-datetime>
           </ion-col>
-          <ion-col >{{cahngeddate}}</ion-col>
+          <ion-col >{{cahngeddate}}</ion-col> 
           
           
           </ion-row>
 
-    </ion-grid>
+    </ion-grid> -->
    
     
   </ion-navbar>
@@ -58,7 +58,7 @@
                 
                   <ion-row>
                       <ion-col id="card-divder-border" center text-center width-25>
-                        <h2  ion-text color="income-color">{{getCurrency(totalIncome)}}</h2></ion-col>
+                        <h2  ion-text color="income-color">{{getCurrency(totalIncome )}}</h2></ion-col>
                       <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(totalExpense)}}</h2></ion-col>
                       <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(balance)}}</h2></ion-col>
                     </ion-row>
@@ -102,7 +102,7 @@
              
                     <ion-row>
                         <ion-col  center text-center width-25>
-                          <h2  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome)}}</h2></ion-col>
+                          <h2  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome) }}</h2></ion-col>
                         <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(TodayRevenue.totalExpense) }}</h2></ion-col>
                         <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(TodayRevenue.totalBalance) }}</h2></ion-col>
                       </ion-row>
@@ -136,7 +136,7 @@
         <ion-grid style="padding:1px">
               <ion-row>
                   <ion-col  center text-center width-25>
-                    <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome)}}</h2></ion-col>
+                    <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome )}}</h2></ion-col>
                   <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</h2></ion-col>
                   <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</h2></ion-col>
                 </ion-row>
@@ -171,7 +171,7 @@
       <ion-grid style="padding:1px">
             <ion-row>
                 <ion-col  center text-center width-25>
-                  <h2  ion-text color="income-color">{{getCurrency(MonthRevenue.totalIncome)}}</h2></ion-col>
+                  <h2  ion-text color="income-color">{{getCurrency(MonthRevenue.Income)}}</h2></ion-col>
                 <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(MonthRevenue.totalExpense)}}</h2></ion-col>
                 <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(MonthRevenue.totalBalance)}}</h2></ion-col>
               </ion-row>
@@ -297,7 +297,7 @@
                     <button ion-button color="primary" >
                       <ion-icon name="paper"></ion-icon>
                     </button>
-                    <button ion-button color="danger" >
+                    <button ion-button color="danger" (click)="deleteData(expense.rowid)" >
                       <ion-icon name="trash"></ion-icon>
                     </button>
                   </ion-item-options>

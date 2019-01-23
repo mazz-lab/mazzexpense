@@ -22,7 +22,7 @@ export class AddExpensePage {
    
 
     this.sqlite.create({
-      name: 'ionicdb.db',
+      name: 'mebdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
       db.executeSql('INSERT INTO expense VALUES(NULL,?,?,?,?)',[this.data.date,this.data.type,this.data.description,this.data.amount])

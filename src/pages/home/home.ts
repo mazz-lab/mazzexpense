@@ -1,10 +1,8 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, FabContainer } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePipe,CurrencyPipe } from '@angular/common';
-import { Chart } from 'chart.js';
-
-  import { UtilProvider } from '../../providers/util/util';
+import { UtilProvider } from '../../providers/util/util';
 
 
 @IonicPage()
@@ -15,19 +13,10 @@ import { Chart } from 'chart.js';
 export class HomePage {
 
   expenses: any = [];
-  totalIncome = 0.00;
+  totalIncome =  0.00;
   totalExpense = 0.00;
   balance = 0.00;
 
-  
-
-  @ViewChild('barCanvas') barCanvas;
-    @ViewChild('doughnutCanvas') doughnutCanvas;
-    @ViewChild('lineCanvas') lineCanvas;
-
-    barChart: any;
-    doughnutChart: any;
-    lineChart: any;
     cahngeddate: any;
   
     getchanged($event){
@@ -36,11 +25,11 @@ export class HomePage {
       console.log("selected Date"+$event);
     }
 
-  
+   
 
   WeekRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
   TodayRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
-  MonthRevenue = { totalIncome: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
+  MonthRevenue = { Income: 0.00, totalExpense: 0.00, totalBalance: 0.00 };
 
   today = new Date().toISOString();
 data_final:any;
@@ -80,67 +69,19 @@ data_final:any;
     
   }
 
-  // Doughnut
-  public memberChartOptions: any = {
-    responsive: true,
-    legend: {
-        display: false,
-        labels: {
-            display: false
-        }
-    }
-};
-
-expensest: any = [this.totalIncome,this.totalExpense,this.balance];
-
-
-
-// events
-public chartClicked(e:any):void {
-  console.log(e);
-  
-}
-
-public chartHovered(e:any):void {
-  console.log(e);
-}
-
-public doughnutChartLabels:string[]=['Icome', 'Expense', 'Balanse'];;
-public doughnutChartData:number[]=[];
-
-public doughnutChartType:string = 'doughnut';
-public chartColors: any[] = [{ backgroundColor:["#2E7D32", "#C62828", "#4A148C"] }];
-
-chartData(){
-
-  // this.doughnutChartLabels = ['Icome', 'Expense', 'Balanse'];
- //this.doughnutChartData = [this.totalIncome,this.totalExpense,this.balance];
- this.doughnutChartData = [200,330,45.9];
-
-}
-
-
-
 
   ionViewDidLoad() {
     this.getData();
-    this.chartData();
-    
-    console.log("enter.."+this.totalExpense);
-    // this.intialChatJs();
   }
 
 
   ionViewWillEnter() {
     this.getData();
-    this.chartData();
-    console.log("enter.."+this.totalExpense);
-    // this.intialChatJs();
   }
 
 
   getCurrency(amount: number) {
-    return this.currencyPipe.transform(amount, 'INR', true, '1.2-2');
+    return this.currencyPipe.transform(this.util.getNumber(amount), 'INR', true, '1.2-2');
   }
 
  
@@ -173,126 +114,10 @@ chartData(){
  
 
 
-  // Chat Js
-
-  intialChatJs(){
-
-  //   this.barChart = new Chart(this.barCanvas.nativeElement, {
-
-  //     type: 'bar',
-  //     data: {
-  //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  //         datasets: [{
-  //             label: '# of Votes',
-  //             data: [12, 19, 3, 5, 2, 3],
-  //             backgroundColor: [
-  //                 'rgba(255, 99, 132, 0.2)',
-  //                 'rgba(54, 162, 235, 0.2)',
-  //                 'rgba(255, 206, 86, 0.2)',
-  //                 'rgba(75, 192, 192, 0.2)',
-  //                 'rgba(153, 102, 255, 0.2)',
-  //                 'rgba(255, 159, 64, 0.2)'
-  //             ],
-  //             borderColor: [
-  //                 'rgba(255,99,132,1)',
-  //                 'rgba(54, 162, 235, 1)',
-  //                 'rgba(255, 206, 86, 1)',
-  //                 'rgba(75, 192, 192, 1)',
-  //                 'rgba(153, 102, 255, 1)',
-  //                 'rgba(255, 159, 64, 1)'
-  //             ],
-  //             borderWidth: 1
-  //         }]
-  //     },
-  //     options: {
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     beginAtZero:true
-  //                 }
-  //             }]
-  //         }
-  //     }
-
-  // });
-
-
-  this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-
-    type: 'doughnut',
-    data: {
-        labels: ["Income", "Expense", "Balanse"],
-        options: {
-          legend: {
-            display: false
-        },
-        tooltips: {
-          filter: function (tooltipItem) {
-            return tooltipItem.datasetIndex === 0;
-        }
-        },
-      },
-        datasets: [{
-            label: '# of Votes',
-            data: [20, 12, 8,],
-            tooltip: false,
-            backgroundColor: [
-                '#2E7D32',
-                '#C62828',
-                '#4A148C',
-
-                
-            ],
-            hoverBackgroundColor: [
-              '#2E7D32',
-              '#C62828',
-              '#4A148C',
-            ]
-        }]
-    }
-
-});
-
-// this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-
-//     type: 'line',
-//     data: {
-//         labels: ["January", "February", "March", "April", "May", "June", "July"],
-//         datasets: [
-//             {
-//                 label: "My First dataset",
-//                 fill: false,
-//                 lineTension: 0.1,
-//                 backgroundColor: "rgba(75,192,192,0.4)",
-//                 borderColor: "rgba(75,192,192,1)",
-//                 borderCapStyle: 'butt',
-//                 borderDash: [],
-//                 borderDashOffset: 0.0,
-//                 borderJoinStyle: 'miter',
-//                 pointBorderColor: "rgba(75,192,192,1)",
-//                 pointBackgroundColor: "#fff",
-//                 pointBorderWidth: 1,
-//                 pointHoverRadius: 5,
-//                 pointHoverBackgroundColor: "rgba(75,192,192,1)",
-//                 pointHoverBorderColor: "rgba(220,220,220,1)",
-//                 pointHoverBorderWidth: 2,
-//                 pointRadius: 1,
-//                 pointHitRadius: 10,
-//                 data: [65, 59, 80, 81, 56, 55, 40],
-//                 spanGaps: false,
-//             }
-//         ]
-//     }
-
-// });
-
-
-
-  }
 
   getData() {
     this.sqlite.create({
-      name: 'ionicdb.db',
+      name: 'mebdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
       db.executeSql('CREATE TABLE IF NOT EXISTS expense(rowid INTEGER PRIMARY KEY, date TEXT, type TEXT,description TEXT, amount REAL DEFAULT 0.00)', [])
@@ -310,7 +135,6 @@ chartData(){
         .then(res => {
           if (res.rows.length > 0) {
             this.totalIncome = parseFloat(res.rows.item(0).totalIncome);
-            this.expensest.push(this.totalIncome);
             this.balance = this.totalIncome - this.totalExpense;
           }
         })
@@ -365,11 +189,12 @@ db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expen
 
 
 
+
 // Month report income
-db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Income" and and date >= "'+this.month_start_day+'" and date <= "'+this.month_end_end+'"', [])
+db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Income" and date >= "'+this.month_start_day+'" and date <= "'+this.month_end_end+'"', [])
 .then(res => {
   if (res.rows.length > 0) {
-    this.MonthRevenue.totalIncome = parseFloat(res.rows.item(0).totalExpense);
+    this.MonthRevenue.Income = parseFloat(res.rows.item(0).totalExpense);
    // this.balance = this.totalIncome - this.totalExpense;
   }
 })
@@ -379,7 +204,7 @@ db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expen
 .then(res => {
   if (res.rows.length > 0) {
     this.MonthRevenue.totalExpense = parseFloat(res.rows.item(0).totalExpense);
-    this.MonthRevenue.totalBalance = this.MonthRevenue.totalIncome - this.MonthRevenue.totalExpense;
+    this.MonthRevenue.totalBalance = this.MonthRevenue.Income - this.MonthRevenue.totalExpense;
   }
 })
 
@@ -398,18 +223,18 @@ db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expen
   //  });
   // }
 
-  // deleteData(rowid) {
-  //   this.sqlite.create({
-  //     name: 'ionicdb.db',
-  //     location: 'default'
-  //   }).then((db: SQLiteObject) => {
-  //     db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
-  //     .then(res => {
-  //       console.log(res);
-  //       this.getData();
-  //     })
-  //     .catch(e => console.log(e));
-  //   }).catch(e => console.log(e));
-  // }
+  deleteData(rowid) {
+    this.sqlite.create({
+      name: 'mebdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
+      .then(res => {
+        console.log(res);
+        this.getData();
+      })
+      .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  }
 
 }

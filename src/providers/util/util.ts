@@ -20,6 +20,11 @@ export class UtilProvider {
       return new Date(year, month, 1);
   }
 
+  getNumber(val: any) {
+    if (isNaN(val)) return 0;
+    return +val;
+  }
+
   
   getCurrentWeekStartDate() {
     var curr = new Date(); // get current date

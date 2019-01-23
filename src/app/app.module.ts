@@ -6,12 +6,13 @@ import { DatePipe,CurrencyPipe } from '@angular/common';
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 import { MyApp } from './app.component';
-
+import { PipesModule } from '../pipes/pipes.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
 import { UtilProvider } from '../providers/util/util';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UtilProvider } from '../providers/util/util';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{statusbarPadding: true}),
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,6 +42,7 @@ import { UtilProvider } from '../providers/util/util';
     DatePipe,
     CurrencyPipe,
     UtilProvider,
+    
   ]
 })
 export class AppModule {}
