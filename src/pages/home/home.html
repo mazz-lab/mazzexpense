@@ -3,6 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-title>Dashboard</ion-title>
 
     <!-- <ion-grid style="padding: 1px"> 
 
@@ -22,11 +23,11 @@
   
 </ion-header>
 
-<ion-content  class="ion-contents"  >
+<ion-content no-padding  class="ion-contents"  >
   <!--Segment Block-->
     <ion-segment [(ngModel)]="segmentblock" color="primary" >
         <ion-segment-button value="dashboard">
-          Dashboard
+          Overview
         </ion-segment-button>
         <ion-segment-button value="activity">
            Today 

@@ -1,0 +1,46 @@
+<ion-header  >
+  <ion-navbar style="padding: 1px" color=primary >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+  
+   <ion-title>Category</ion-title>
+    
+   
+
+  </ion-navbar>
+  
+</ion-header>
+
+
+
+<ion-content no-padding >
+
+  <!--Segment Block-->
+  <ion-segment [(ngModel)]="segmentblock" color="primary" >
+      <ion-segment-button value="Expenses">
+          Expenses
+      </ion-segment-button>
+      <ion-segment-button value="Income">
+         Income 
+      </ion-segment-button>
+    </ion-segment>
+
+</ion-content>
+<ion-footer >
+    
+
+        <ion-buttons center style="text-align:center" >
+        
+          <button    ion-button  round >
+              <ion-icon name="add">  Add new category</ion-icon>
+            
+          </button>
+        </ion-buttons>
+    
+        
+    
+    
+   
+</ion-footer> 
