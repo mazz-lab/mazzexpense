@@ -26,6 +26,55 @@
          Income 
       </ion-segment-button>
     </ion-segment>
+    <div [ngSwitch]="segmentblock">
+      
+
+          <ion-list style="padding-top:2px;"  *ngSwitchCase="'Expenses'" >
+        <ion-item-sliding *ngFor="let expense of expenses_category; let i=index"  style="border-bottom:1px solid gray;">
+     <ion-item  >
+   
+       <span>{{expense.categoryname}}</span>
+          </ion-item>
+
+          <ion-item-options side="right">
+              <button ion-button color="primary" >
+                <ion-icon name="paper"></ion-icon>
+              </button>
+              <button ion-button color="danger" >
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-item-options>
+           
+        </ion-item-sliding > 
+       
+       
+      
+        </ion-list>
+
+
+        <ion-list style="padding-top:2px;"  *ngSwitchCase="'Income'" >
+            <ion-item-sliding *ngFor="let income of income_category; let i=index"  style="border-bottom:1px solid gray;">
+         <ion-item  >
+       
+           <span>{{income.categoryname}}</span>
+              </ion-item>
+    
+              <ion-item-options side="right">
+                  <button ion-button color="primary" >
+                    <ion-icon name="paper"></ion-icon>
+                  </button>
+                  <button ion-button color="danger" >
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                </ion-item-options>
+               
+            </ion-item-sliding > 
+           
+           
+          
+            </ion-list>
+   
+</div>
 
 </ion-content>
 <ion-footer >
@@ -33,7 +82,7 @@
 
         <ion-buttons center style="text-align:center" >
         
-          <button    ion-button  round >
+          <button  (click)="openModal()"  ion-button  round >
               <ion-icon name="add">  Add new category</ion-icon>
             
           </button>
