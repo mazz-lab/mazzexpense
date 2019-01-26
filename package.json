@@ -26,6 +26,7 @@
     "@ionic-native/status-bar": "~4.18.0",
     "@ionic-native/toast": "^4.18.0",
     "@ionic/storage": "2.2.0",
+    "@mdi/font": "^3.3.92",
     "chart.js": "^2.7.3",
     "cordova-android": "6.3.0",
     "cordova-plugin-device": "^2.0.2",
@@ -37,6 +38,7 @@
     "cordova-plugin-x-toast": "^2.7.2",
     "cordova-sqlite-storage": "2.6.0",
     "ionic-angular": "3.9.2",
+    "ionic2-material-icons": "^1.0.3",
     "ionicons": "3.0.0",
     "ng2-charts": "^1.6.0",
     "rxjs": "5.5.11",
@@ -47,6 +49,9 @@
     "@ionic/app-scripts": "3.2.1",
     "@ionic/lab": "1.0.16",
     "typescript": "~2.6.2"
+  },
+  "config": {
+    "ionic_copy": "./copy.config.js"
   },
   "description": "An Ionic project",
   "cordova": {

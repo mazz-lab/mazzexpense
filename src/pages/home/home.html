@@ -38,47 +38,7 @@
     <div id="ListBackdrop" *ngIf="fabButtonOpened==true" ></div> 
 <!-- total expense card details -->
 <div [ngSwitch]="segmentblock">
-    <ion-card *ngSwitchCase="'dashboard'">
-      <ion-card-header class="total-expense-card">
-          <ion-grid>
-
-              <ion-row  >
-                  <ion-col  center text-center  width-25>Income</ion-col>
-                  
-  
-                  <ion-col  center text-center  width-25>Expense</ion-col>
-                  <ion-col  center text-center  width-40>Balance</ion-col>
-                </ion-row>
-                </ion-grid>
-        
-      </ion-card-header>
-
-        <ion-card-content class="total-expense-card">
-            <ion-grid>
-
-                
-                  <ion-row>
-                      <ion-col id="card-divder-border" center text-center width-25>
-                        <h2  ion-text color="income-color">{{getCurrency(totalIncome )}}</h2></ion-col>
-                      <ion-col id="card-divder-border" center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(totalExpense)}}</h2></ion-col>
-                      <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(balance)}}</h2></ion-col>
-                    </ion-row>
-                    <!-- <ion-row>
-                        <canvas baseChart
-                        [data]="doughnutChartData"
-                        [labels]="doughnutChartLabels"
-                        [chartType]="doughnutChartType"
-                        [options]="memberChartOptions"
-                        (chartHover)="chartHovered($event)"
-                        [colors]="chartColors"
-                        (chartClick)="chartClicked($event)"></canvas>
-         
-</ion-row> -->
-                  </ion-grid>
-        
-        </ion-card-content>
-      
-      </ion-card> 
+   
 
 
        <!-- Today expense details -->
@@ -103,9 +63,9 @@
              
                     <ion-row>
                         <ion-col  center text-center width-25>
-                          <h2  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome) }}</h2></ion-col>
-                        <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(TodayRevenue.totalExpense) }}</h2></ion-col>
-                        <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(TodayRevenue.totalBalance) }}</h2></ion-col>
+                          <span  ion-text color="income-color">{{getCurrency(TodayRevenue.totalIncome) }}</span></ion-col>
+                        <ion-col  center text-center width-25><span  ion-text color="expense-color">{{getCurrency(TodayRevenue.totalExpense) }}</span></ion-col>
+                        <ion-col  center text-center width-50><span  ion-text color="balance-color">{{getCurrency(TodayRevenue.totalBalance) }}</span></ion-col>
                       </ion-row>
                     </ion-grid>
          
@@ -137,9 +97,9 @@
         <ion-grid style="padding:1px">
               <ion-row>
                   <ion-col  center text-center width-25>
-                    <h2  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome )}}</h2></ion-col>
-                  <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</h2></ion-col>
-                  <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</h2></ion-col>
+                    <span  ion-text color="income-color">{{getCurrency(WeekRevenue.totalIncome )}}</span></ion-col>
+                  <ion-col  center text-center width-25><span  ion-text color="expense-color">{{getCurrency(WeekRevenue.totalExpense)}}</span></ion-col>
+                  <ion-col  center text-center width-50><span  ion-text color="balance-color">{{getCurrency(WeekRevenue.totalBalance)}}</span></ion-col>
                 </ion-row>
               </ion-grid>
     </ion-card-content>
@@ -172,9 +132,9 @@
       <ion-grid style="padding:1px">
             <ion-row>
                 <ion-col  center text-center width-25>
-                  <h2  ion-text color="income-color">{{getCurrency(MonthRevenue.Income)}}</h2></ion-col>
-                <ion-col  center text-center width-25><h2  ion-text color="expense-color">{{getCurrency(MonthRevenue.totalExpense)}}</h2></ion-col>
-                <ion-col  center text-center width-50><h2  ion-text color="balance-color">{{getCurrency(MonthRevenue.totalBalance)}}</h2></ion-col>
+                  <span  ion-text color="income-color">{{getCurrency(MonthRevenue.Income)}}</span></ion-col>
+                <ion-col  center text-center width-25><span  ion-text color="expense-color">{{getCurrency(MonthRevenue.totalExpense)}}</span></ion-col>
+                <ion-col  center text-center width-50><span  ion-text color="balance-color">{{getCurrency(MonthRevenue.totalBalance)}}</span></ion-col>
               </ion-row>
             </ion-grid>
   </ion-card-content>
@@ -372,16 +332,16 @@
 
 
 <ion-fab bottom right  #fab >
-<button ion-fab (click)="openFabButton()" ><ion-icon name="add"></ion-icon> </button>
+<button ion-fab (click)="openFabButton()" mini ><ion-icon name="add"></ion-icon> </button>
  
 <ion-fab-list side="top">
 
-    <button  color="expense-color"  ion-fab (click)="goExpense(fab)">
+    <button  color="expense-color" mini  ion-fab (click)="goExpense(fab)">
       <ion-icon  color="light"   name="remove"></ion-icon>
     </button>
     <ion-label class="fablabelexpense">Expense</ion-label>
    
-    <button color="income-color"   ion-fab (click)="goIncome(fab)">
+    <button color="income-color"  mini  ion-fab (click)="goIncome(fab)">
         <ion-icon  color='light'   name="add"></ion-icon>
     </button>
 
@@ -400,3 +360,35 @@
 
      
 </ion-content>  
+<ion-footer>
+
+    
+            <ion-grid class="total-expense-card">
+  
+                <ion-row  >
+                    <ion-col  center text-center  width-25>Total Income</ion-col>
+                    
+    
+                    <ion-col  center text-center  width-25>Total Expense</ion-col>
+                    <ion-col  center text-center  width-40>Total Balance</ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                      <ion-col id="card-divder-border" center text-center width-25>
+                        <span  ion-text color="income-color">{{getCurrency(totalIncome )}}</span></ion-col>
+                      <ion-col id="card-divder-border" center text-center width-25><span  ion-text color="expense-color">{{getCurrency(totalExpense)}}</span></ion-col>
+                      <ion-col  center text-center width-50><span  ion-text color="balance-color">{{getCurrency(balance)}}</span></ion-col>
+                    </ion-row>
+                  </ion-grid>
+          
+       
+              <ion-grid>
+  
+                  
+                   
+                     
+                    </ion-grid>
+          
+         
+
+</ion-footer>

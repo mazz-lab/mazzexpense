@@ -18,6 +18,7 @@ import { Toast } from '@ionic-native/toast';
 export class AddcategoryPage {
 
   titlename:string;
+  selectediconname:string="hamburger";
   categorydata = { categorytype:"", categoryname:""};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,
@@ -34,6 +35,48 @@ export class AddcategoryPage {
     console.log(this.navParams.get('message'));
     this.titlename=this.navParams.get('pagename');
   }
+  buttonColor: string = '#FFFFF';
+  imagepath="assets/imgs/";
+
+  addEvent(selectedicon: any){
+    this.selectediconname=selectedicon;
+    // this.imagepath+""+selectedicon+".png";
+    
+    this.buttonColor = '#345465'; //desired Color
+    
+    /*
+    YOUR FUNCTION CODE
+    */
+    
+    }
+// used for an example of ngFor and navigation
+categoryicon = [
+  { iconname: 'hamburger', color:'home'},
+  { iconname: 'milk-bottle', color:'home'},
+   { iconname: 'local_cafe', color:'home'},
+  { iconname: 'local_car_wash', color:'home'},
+  { iconname: 'local_gas_station', color:'home'},
+  { iconname: 'local_grocery_store', color:'home'},
+  { iconname: 'local_hospital', color:'home'},
+  { iconname: 'local_hotel', color:'home'},
+  { iconname: 'local_mall', color:'home'},
+  { iconname: 'local_movies', color:'home'},
+  { iconname: 'local_pharmacy', color:'home'},
+  { iconname: 'local_taxi', color:'home'},
+  { iconname: 'phone_iphone', color:'home'},
+  { iconname: 'train', color:'home'},
+  { iconname: 'child_care', color:'home'},
+  { iconname: 'child_friendly', color:'home'},
+  { iconname: 'computer', color:'home'},
+  { iconname: 'access-pointge', color:'home'},
+  
+  { iconname: 'tv', color:'home'}
+  
+  
+  
+];
+
+
 
   saveData() {
 

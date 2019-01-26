@@ -17,14 +17,37 @@
   
   <ion-content >
 
+       
+
         <form >
             
           
             <ion-item>
-              <ion-label>Description</ion-label>
-              <ion-input type="text" placeholder="Description" [(ngModel)]="categorydata.categoryname" name="categoryname" required="" ></ion-input>
+                <ion-label>  <button ion-fab color="light" left  mini> <img [src]="'assets/imgs/' + selectediconname + '.png'">   </button>
+                </ion-label>
+                <ion-input type="text" placeholder="Description" name="categoryname" required="" ></ion-input>
             </ion-item>
          
             <!-- <button ion-button type="submit" block>Save Data</button> -->
           </form>
+
+          <ion-grid   >
+
+                <ion-row >
+                        <ion-col  center text-center   width-25>
+                               Food / Drink
+                            </ion-col>
+                </ion-row>
+
+                <ion-row  >
+                        <ion-col  center text-center  *ngFor="let caticon  of categoryicon">
+                              
+                                
+                               
+                                <button ion-fab color="light" (click)="addEvent(caticon.iconname);" class="my-button"  mini> <img [src]="'assets/imgs/' + caticon.iconname + '.png'">   </button>
+                            </ion-col>
+                </ion-row>
+                  
+                  
+                  </ion-grid>
 </ion-content>

@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
 import { UtilProvider } from '../providers/util/util';
+import { MaterialIconsModule } from 'ionic2-material-icons';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UtilProvider } from '../providers/util/util';
     BrowserModule,
     IonicModule.forRoot(MyApp,{statusbarPadding: true}),
     ChartsModule,
-    PipesModule
+    PipesModule,
+    MaterialIconsModule 
   ],
   bootstrap: [IonicApp],
   entryComponents: [
