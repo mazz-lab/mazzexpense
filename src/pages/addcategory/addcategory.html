@@ -6,7 +6,7 @@
           <button large ion-button (click)="closeModal()"><ion-icon style="zoom:1.5;" name="arrow-back" color="light"></ion-icon></button>
           </ion-buttons>
           <ion-buttons right > 
-              <button ion-button (click)="closeModal()"><ion-icon style="zoom:1.5;" name="checkmark" color="light"></ion-icon></button>
+              <button ion-button (click)="saveData()"><ion-icon style="zoom:1.5;" name="checkmark" color="light"></ion-icon></button>
               </ion-buttons>
       <ion-title>Add {{titlename}} Category</ion-title>
       
@@ -25,8 +25,12 @@
             <ion-item>
                 <ion-label>  <button ion-fab color="light" left  mini> <img [src]="'assets/imgs/' + selectediconname + '.png'">   </button>
                 </ion-label>
-                <ion-input type="text" placeholder="Description" name="categoryname" required="" ></ion-input>
+                <ion-input type="text" placeholder="Description" [(ngModel)]="categorydata.categoryname" name="categoryname" required="" ></ion-input>
+                
+           
             </ion-item>
+            <ion-input type="hidden" placeholder="categorytype" [(ngModel)]="categorydata.categorytype" name="categorytype"  required="" ></ion-input>
+                <ion-input type="hidden" placeholder="Description" [(ngModel)]="categorydata.categoryiconname" name="categoryiconname"  required="" ></ion-input>
          
             <!-- <button ion-button type="submit" block>Save Data</button> -->
           </form>

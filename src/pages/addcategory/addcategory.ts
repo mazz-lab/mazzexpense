@@ -19,7 +19,7 @@ export class AddcategoryPage {
 
   titlename:string;
   selectediconname:string="hamburger";
-  categorydata = { categorytype:"", categoryname:""};
+  categorydata = { categorytype:"", categoryname:"",categoryiconname:"",categoryiconcolor:""};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,
     private sqlite: SQLite,
@@ -34,26 +34,21 @@ export class AddcategoryPage {
     console.log('ionViewDidLoad AddcategoryPage');
     console.log(this.navParams.get('message'));
     this.titlename=this.navParams.get('pagename');
+    this.categorydata.categorytype=this.navParams.get('pagename');
+    this.categorydata.categoryiconname=this.selectediconname;
   }
   buttonColor: string = '#FFFFF';
   imagepath="assets/imgs/";
 
   addEvent(selectedicon: any){
     this.selectediconname=selectedicon;
-    // this.imagepath+""+selectedicon+".png";
-    
-    this.buttonColor = '#345465'; //desired Color
-    
-    /*
-    YOUR FUNCTION CODE
-    */
     
     }
 // used for an example of ngFor and navigation
 categoryicon = [
   { iconname: 'hamburger', color:'home'},
   { iconname: 'milk-bottle', color:'home'},
-   { iconname: 'local_cafe', color:'home'},
+   { iconname: 'icon', color:'home'},
   { iconname: 'local_car_wash', color:'home'},
   { iconname: 'local_gas_station', color:'home'},
   { iconname: 'local_grocery_store', color:'home'},
@@ -86,18 +81,21 @@ categoryicon = [
       name: 'mebdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('INSERT INTO expense VALUES(NULL,?,?,?,?)',[this.categorydata.categorytype,this.categorydata.categoryname])
+      db.executeSql('INSERT INTO category VALUES(NULL,?,?,?,?)',[this.categorydata.categorytype,this.categorydata.categoryname,this.categorydata.categoryiconname,this.categorydata.categoryiconcolor])
         .then(res => {
           console.log(res);
-          this.toast.show('Data saved', '5000', 'center').subscribe(
+          this.toast.show('Data saved'+res+".."+this.categorydata.categorytype+
+          this.categorydata.categoryname+
+          this.categorydata.categoryiconname+
+          this.categorydata.categoryiconcolor, '5000', 'center').subscribe(
             toast => {
-              this.navCtrl.popToRoot();
+              this.viewCtrl.dismiss();
             }
           );
         })
         .catch(e => {
           console.log(e);
-          this.toast.show(e, '5000', 'center').subscribe(
+          this.toast.show("erorr.."+e, '5000', 'center').subscribe(
             toast => {
               console.log(toast);
             }

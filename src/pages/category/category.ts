@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { Toast } from '@ionic-native/toast';
 
 /**
  * Generated class for the CategoryPage page.
@@ -21,17 +22,30 @@ export class CategoryPage {
 
   segmentblock:any;
 
-  
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl : ModalController,
-    private sqlite: SQLite,) {
+    private sqlite: SQLite,private toast: Toast) {
     this.segmentblock = "Expenses";
+  //   this.expenses_category=[
+  //     {
+  //     categoryname:"dsadas",iconname:"logo"
+  //   },
+
+  //   {
+  //     categoryname:"sds",iconname:"logo"
+  //   },
+  // ];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoryPage');
+    this.getData();
   }
 
+
+  ionViewWillEnter() {
+    this.getData();
+  }
 
 
   getData() {
@@ -39,23 +53,37 @@ export class CategoryPage {
       name: 'mebdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('CREATE TABLE IF NOT EXISTS expense(categoryid INTEGER PRIMARY KEY, categorytype TEXT, type TEXT,categoryname TEXT)', [])
+      db.executeSql('CREATE TABLE IF NOT EXISTS category(categoryid INTEGER PRIMARY KEY, categorytype TEXT,categoryname TEXT,categoryiconname TEXT,categoryiconcolor TEXT)', [])
         .then(res => console.log('Executed SQL'))
         .catch(e => console.log(e));
-      db.executeSql('SELECT * FROM expense where categorytype="Expense"  ORDER BY rowid DESC', [])
+      db.executeSql('SELECT * FROM category  ORDER BY categoryid DESC', [])
         .then(res => {
+         
           this.expenses_category = [];
           for (var i = 0; i < res.rows.length; i++) {
-            this.expenses_category.push({ categoryid: res.rows.item(i).categoryid, categorytype: res.rows.item(i).categorytype, categoryname: res.rows.item(i).categoryname})
+            this.toast.show("data.."+res.rows.item(i).categorytype, '5000', 'center').subscribe(
+              toast => {
+                console.log(toast);
+              }
+            );
+            this.expenses_category.push({ categoryid: res.rows.item(i).categoryid, categorytype: res.rows.item(i).categorytype, categoryname: res.rows.item(i).categoryname, categoryiconname: res.rows.item(i).categoryiconname, categoryiconcolor: res.rows.item(i).categoryiconcolor})
           }
         })
-        .catch(e => console.log(e));
+        .catch(e => 
+        
+          this.toast.show("error.."+e, '5000', 'center').subscribe(
+            toast => {
+              console.log(toast);
+            }
+          )
+          
+          );
 
-        db.executeSql('SELECT * FROM expense where categorytype="Income"  ORDER BY rowid DESC', [])
+        db.executeSql('SELECT * FROM category where categorytype="Income"  ORDER BY categoryid DESC', [])
         .then(res => {
           this.income_category = [];
           for (var i = 0; i < res.rows.length; i++) {
-            this.income_category.push({ categoryid: res.rows.item(i).categoryid, categorytype: res.rows.item(i).categorytype, categoryname: res.rows.item(i).categoryname})
+            this.income_category.push({ categoryid: res.rows.item(i).categoryid, categorytype: res.rows.item(i).categorytype, categoryname: res.rows.item(i).categoryname, categoryiconname: res.rows.item(i).categoryiconname, categoryiconcolor: res.rows.item(i).categoryiconcolor})
           }
         })
         .catch(e => console.log(e));
@@ -77,6 +105,9 @@ export class CategoryPage {
 
     
     var modalPage = this.modalCtrl.create('AddcategoryPage',data);
+    modalPage.onDidDismiss(() => {
+      this.getData();
+    });
     modalPage.present();
 }
 
