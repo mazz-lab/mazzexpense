@@ -51,13 +51,27 @@ export class CategoryPage {
   deleteCategory(rowid){
 
     let alert = this.alertCtrl.create({
-      title: 'Delete',
+      title: 'Confirmation',
       subTitle: 'Do you want delete?',
-      buttons: ['No',"Yes"]
+      buttons: [{
+        text: 'No',
+          handler: () => {
+            alert.dismiss().then(() => {  this.getData(); });
+            return false;
+          }},
+        
+          {
+            text: 'Yes',
+              handler: () => {
+                alert.dismiss().then(() => {this.deleteData(rowid); 
+                this.getData(); });
+                return false;
+              }}
+      ]
   });
   alert.present();
 
-  this.deleteData(rowid);
+ 
 
   }
 

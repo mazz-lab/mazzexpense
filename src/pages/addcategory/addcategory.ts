@@ -42,6 +42,7 @@ export class AddcategoryPage {
 
   addEvent(selectedicon: any){
     this.selectediconname=selectedicon;
+    this.categorydata.categoryiconname=selectedicon;
     
     }
 // used for an example of ngFor and navigation
