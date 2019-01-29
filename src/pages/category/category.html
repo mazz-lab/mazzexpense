@@ -33,7 +33,7 @@
          *ngFor="let expense of expenses_category; let i=index"  style="border-bottom:1px solid gray;">
      <ion-item >
       <button item-start ion-fab color="light"  class="my-button"  mini> <img [src]="'assets/imgs/' + expense.categoryiconname + '.png'">   </button>
-       <span> id..{{expense.categoryid}}</span>
+     
        <span>{{expense.categoryname}}</span>
        
           </ion-item>
@@ -42,7 +42,7 @@
               <button ion-button color="primary" >
                 <ion-icon name="paper"></ion-icon>
               </button>
-              <button ion-button color="danger" >
+              <button ion-button color="danger" (click)="deleteCategory(expense.categoryid);" >
                 <ion-icon name="trash"></ion-icon>
               </button>
             </ion-item-options>
@@ -53,6 +53,32 @@
       
         </ion-list>
 
+ <!-- Income List -->
+        <ion-list style="padding-top:2px;"  *ngSwitchCase="'Income'" >
+            <ion-item-sliding
+             *ngFor="let income of income_category; let i=index"  style="border-bottom:1px solid gray;">
+         <ion-item >
+          <button item-start ion-fab color="light"  class="my-button"  mini> <img [src]="'assets/imgs/' + income.categoryiconname + '.png'">   </button>
+         
+           <span>{{income.categoryname}}</span>
+           
+              </ion-item>
+    
+              <ion-item-options side="right">
+                  <button ion-button color="primary"  >
+                    <ion-icon name="paper"></ion-icon>
+                  </button>
+                  <button ion-button color="danger" (click)="deleteCategory(income.categoryid);" >
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                </ion-item-options>
+               
+            </ion-item-sliding > 
+           
+           
+          
+            </ion-list>
+    
 
         
    

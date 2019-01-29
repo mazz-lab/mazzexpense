@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController,AlertController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
 
@@ -25,7 +25,7 @@ export class CategoryPage {
  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl : ModalController,
-    private sqlite: SQLite,private toast: Toast) {
+    private sqlite: SQLite,private toast: Toast,public  alertCtrl: AlertController) {
     this.segmentblock = "Expenses";
   //   this.expenses_category=[
   //     {
@@ -48,6 +48,33 @@ export class CategoryPage {
   }
 
 
+  deleteCategory(rowid){
+
+    let alert = this.alertCtrl.create({
+      title: 'Delete',
+      subTitle: 'Do you want delete?',
+      buttons: ['No',"Yes"]
+  });
+  alert.present();
+
+  this.deleteData(rowid);
+
+  }
+
+  deleteData(rowid) {
+    this.sqlite.create({
+      name: 'mebdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('DELETE FROM category WHERE categoryid=?', [rowid])
+      .then(res => {
+        console.log(res);
+        this.getData();
+      })
+      .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  }
+
   getData() {
     this.sqlite.create({
       name: 'mebdb.db',
@@ -56,16 +83,16 @@ export class CategoryPage {
       db.executeSql('CREATE TABLE IF NOT EXISTS category(categoryid INTEGER PRIMARY KEY, categorytype TEXT,categoryname TEXT,categoryiconname TEXT,categoryiconcolor TEXT)', [])
         .then(res => console.log('Executed SQL'))
         .catch(e => console.log(e));
-      db.executeSql('SELECT * FROM category  ORDER BY categoryid DESC', [])
+      db.executeSql('SELECT * FROM category where categorytype="Expenses"  ORDER BY categoryid DESC', [])
         .then(res => {
          
           this.expenses_category = [];
           for (var i = 0; i < res.rows.length; i++) {
-            this.toast.show("data.."+res.rows.item(i).categorytype, '5000', 'center').subscribe(
-              toast => {
-                console.log(toast);
-              }
-            );
+            // this.toast.show("data.."+res.rows.item(i).categorytype, '5000', 'center').subscribe(
+            //   toast => {
+            //     console.log(toast);
+            //   }
+            // );
             this.expenses_category.push({ categoryid: res.rows.item(i).categoryid, categorytype: res.rows.item(i).categorytype, categoryname: res.rows.item(i).categoryname, categoryiconname: res.rows.item(i).categoryiconname, categoryiconcolor: res.rows.item(i).categoryiconcolor})
           }
         })
