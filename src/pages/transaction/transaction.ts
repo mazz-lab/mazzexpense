@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePipe,CurrencyPipe } from '@angular/common';
 import { UtilProvider } from '../../providers/util/util';
@@ -25,7 +25,7 @@ export class TransactionPage {
  // fabButtonOpened: Boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe
-    , public util: UtilProvider) {
+    , public util: UtilProvider,public  alertCtrl: AlertController) {
    //   this.fabButtonOpened = false;
   }
 
@@ -47,6 +47,34 @@ export class TransactionPage {
 
 
   deleteTransactionData(rowid) {
+
+     let alert = this.alertCtrl.create({
+      title: 'Confirmation',
+      subTitle: 'Do you want delete?',
+      buttons: [{
+        text: 'No',
+          handler: () => {
+            alert.dismiss().then(() => {  this.getTransactionData(); });
+            return false;
+          }},
+        
+          {
+            text: 'Yes',
+              handler: () => {
+                alert.dismiss().then(() => {this.deleteTranData(rowid); 
+                this.getTransactionData(); });
+                return false;
+              }}
+      ]
+  });
+  alert.present();
+
+    
+  
+  }
+
+  deleteTranData(rowid){
+
     this.sqlite.create({
       name: 'mebdb.db',
       location: 'default'
