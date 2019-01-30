@@ -133,12 +133,31 @@ export class CategoryPage {
     }).catch(e => console.log(e));
   }
 
+  updateCategory(rowid){
+    var data = { activity:"Edit",pagename : '',datavalue:rowid };
+    if(this.segmentblock==="Expenses"){
+      data.pagename="Edit Expenses";
+    }else{
+      data.pagename="Edit Income";
+
+    }
+
+    var modalPage = this.modalCtrl.create('AddcategoryPage',data);
+    modalPage.onDidDismiss(() => {
+      this.getData();
+    });
+    modalPage.present();
+
+
+
+  }
+
   public openModal(){
     var data = { pagename : '',datavalue:'' };
     if(this.segmentblock==="Expenses"){
-      data.pagename="Expenses";
+      data.pagename="Add Expenses";
     }else{
-      data.pagename="Income";
+      data.pagename="Add Income";
 
     }
 
