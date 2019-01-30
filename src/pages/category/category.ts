@@ -99,7 +99,11 @@ export class CategoryPage {
         .catch(e => console.log(e));
       db.executeSql('SELECT * FROM category where categorytype="Expenses"  ORDER BY categoryid DESC', [])
         .then(res => {
-         
+         this.toast.show("data.."+res.rows.item(0).categorytype, '5000', 'center').subscribe(
+              toast => {
+                console.log(toast);
+              }
+            );
           this.expenses_category = [];
           for (var i = 0; i < res.rows.length; i++) {
             // this.toast.show("data.."+res.rows.item(i).categorytype, '5000', 'center').subscribe(
