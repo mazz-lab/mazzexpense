@@ -38,7 +38,7 @@
               <button ion-button color="primary" >
                 <ion-icon name="paper"></ion-icon>
               </button>
-              <button ion-button color="danger"  >
+              <button ion-button color="danger" (click)="deleteTransactionData(expense.rowid)" >
                 <ion-icon name="trash"></ion-icon>
               </button>
             </ion-item-options>

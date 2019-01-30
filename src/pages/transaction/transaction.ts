@@ -46,19 +46,19 @@ export class TransactionPage {
   }
 
 
-  // deleteData(rowid) {
-  //   this.sqlite.create({
-  //     name: 'mebdb.db',
-  //     location: 'default'
-  //   }).then((db: SQLiteObject) => {
-  //     db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
-  //     .then(res => {
-  //       console.log(res);
-  //       this.getData();
-  //     })
-  //     .catch(e => console.log(e));
-  //   }).catch(e => console.log(e));
-  // }
+  deleteTransactionData(rowid) {
+    this.sqlite.create({
+      name: 'mebdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
+      .then(res => {
+        console.log(res);
+        this.getTransactionData();
+      })
+      .catch(e => console.log(e));
+    }).catch(e => console.log(e));
+  }
 
   getTransactionData() {
     this.sqlite.create({
