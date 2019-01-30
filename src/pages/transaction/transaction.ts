@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController,FabContainer } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePipe,CurrencyPipe } from '@angular/common';
 import { UtilProvider } from '../../providers/util/util';
@@ -22,11 +22,11 @@ export class TransactionPage {
   totalIncome = 0;
   totalExpense = 0;
   balance = 0;
- // fabButtonOpened: Boolean;
+  fabButtonOpened: Boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe
     , public util: UtilProvider,public  alertCtrl: AlertController) {
-   //   this.fabButtonOpened = false;
+     this.fabButtonOpened = false;
   }
 
   
@@ -125,27 +125,27 @@ export class TransactionPage {
 
 
 
-  // openFabButton() {
-  //   if (this.fabButtonOpened == false) {
-  //     this.fabButtonOpened = true;
-  //   } else {
-  //     this.fabButtonOpened = false;
-  //   }
-  // }
+  openTranFabButton() {
+    if (this.fabButtonOpened == false) {
+      this.fabButtonOpened = true;
+    } else {
+      this.fabButtonOpened = false;
+    }
+  }
 
-  // goExpense(fab: FabContainer) {
-  //   fab.close();
-  //   this.fabButtonOpened = false;
-  //   this.fabButtonOpened = false;
-  //   this.navCtrl.push('AddExpensePage');
+  goTranExpense(fab: FabContainer) {
+    fab.close();
+    this.fabButtonOpened = false;
+    this.fabButtonOpened = false;
+    this.navCtrl.push('AddExpensePage');
 
-  // }
+  }
 
-  // goIncome(fab: FabContainer) {
-  //   this.fabButtonOpened = false;
-  //   fab.close();
+  goTranIncome(fab: FabContainer) {
+    this.fabButtonOpened = false;
+    fab.close();
 
-  //   this.navCtrl.push('AddIncomePage');
-  // }
+    this.navCtrl.push('AddIncomePage');
+  }
 
 }

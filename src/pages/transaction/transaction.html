@@ -44,25 +44,25 @@
             </ion-item-options>
         </ion-item-sliding> 
     </ion-list>
-    <!-- <div id="ListBackdrop" *ngIf="fabButtonOpened==true" ></div> 
+    <div id="ListBackdrop" *ngIf="fabButtonOpened==true" ></div> 
 
 <ion-fab bottom right  #fab >
-    <button ion-fab (click)="openFabButton()" mini ><ion-icon name="add"></ion-icon> </button>
+    <button ion-fab (click)="openTranFabButton()" mini ><ion-icon name="add"></ion-icon> </button>
      
     <ion-fab-list side="top">
     
-        <button  color="expense-color" mini  ion-fab (click)="goExpense(fab)">
+        <button  color="expense-color" mini  ion-fab (click)="goTranExpense(fab)">
           <ion-icon  color="light"   name="remove"></ion-icon>
         </button>
         <ion-label class="fablabelexpense">Expense</ion-label>
        
-        <button color="income-color"  mini  ion-fab (click)="goIncome(fab)">
+        <button color="income-color"  mini  ion-fab (click)="goTranIncome(fab)">
             <ion-icon  color='light'   name="add"></ion-icon>
         </button>
     
         <ion-label class="fablabelincome">Income</ion-label> 
       </ion-fab-list>
-    </ion-fab> -->
+    </ion-fab>
 </ion-content>
 
 
