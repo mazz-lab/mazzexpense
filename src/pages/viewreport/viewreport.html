@@ -11,18 +11,17 @@
             <ion-buttons right > 
                 <button ion-button (click)="closeReport()"><ion-icon style="zoom:1.5;" name="close" color="light"></ion-icon></button>
                 </ion-buttons>
-        <ion-title> {{selectedFromdate | date :  "dd/MMM/yyyy"}} - {{selectedToDate | date :  "dd/MMM/yyyy"}}</ion-title>
+        <ion-title text-center> {{selectedFromdate | date :  "dd/MMM/yyyy"}} - {{selectedToDate | date :  "dd/MMM/yyyy"}}</ion-title>
         
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
     <ion-list>
-        <ion-item-sliding *ngFor="let expense of expenses; let i=index">
-         
-            <ion-item >
+       
+            <ion-item *ngFor="let expense of expenses; let i=index">
                
                  <h3>{{expense.date | date :  "dd/MMM/yyyy" }}</h3>
                   <span>{{expense.description}}</span>
@@ -34,16 +33,6 @@
                       </h3>
                 </h3>
               </ion-item>
-    
-              <ion-item-options side="right">
-                  <button ion-button color="primary" >
-                    <ion-icon name="paper"></ion-icon>
-                  </button>
-                  <button ion-button color="danger" (click)="deleteTransactionData(expense.rowid)" >
-                    <ion-icon name="trash"></ion-icon>
-                  </button>
-                </ion-item-options>
-            </ion-item-sliding> 
         </ion-list>
 
 </ion-content>
