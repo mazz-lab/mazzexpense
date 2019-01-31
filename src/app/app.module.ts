@@ -13,6 +13,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ChartsModule } from 'ng2-charts';
 import { UtilProvider } from '../providers/util/util';
 import { MaterialIconsModule } from 'ionic2-material-icons';
+import { DatePicker } from '@ionic-native/date-picker';
+
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { MaterialIconsModule } from 'ionic2-material-icons';
     IonicModule.forRoot(MyApp,{statusbarPadding: true}),
     ChartsModule,
     PipesModule,
-    MaterialIconsModule 
+    MaterialIconsModule,
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,6 +48,7 @@ import { MaterialIconsModule } from 'ionic2-material-icons';
     DatePipe,
     CurrencyPipe,
     UtilProvider,
+    DatePicker
     
   ]
 })

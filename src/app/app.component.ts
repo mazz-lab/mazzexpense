@@ -10,7 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: string = 'HomePage';
+  rootPage: string = 'ReportPage';
 
   pages: Array<{title: string,icon: string,iconcolor : string ,component: string}>;
 
@@ -21,6 +21,7 @@ export class MyApp {
     this.pages = [
       { title: 'Dashboard', icon:'home',iconcolor:'home-color', component: 'HomePage' },
       { title: 'Transaction', icon:'paper',iconcolor:'category-color', component: 'TransactionPage' },
+      { title: 'Report', icon:'clipboard',iconcolor:'category-color', component: 'ReportPage' },
       { title: 'Category', icon:'keypad',iconcolor:'category-color', component: 'CategoryPage' },
       { title: 'Cards', icon:'card',iconcolor:'card-color', component: 'CardsPage' },
       // { title: 'Income',icon:'trending-down',iconcolor:'income-color', component: 'IncomeListPage' },

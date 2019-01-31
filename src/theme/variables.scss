@@ -215,6 +215,24 @@ position: absolute;
 
 // FAB End
 
+
+
+form {
+  padding: 0%;
+  font-size: 2px;
+
+  ion-item {
+
+    padding: -9%;
+    ion-input{
+      padding: 0%;
+    }
+    ion-label{
+      padding: 0%;
+    }
+  }
+}
+
 @import "roboto";
 @import "noto-sans";
 

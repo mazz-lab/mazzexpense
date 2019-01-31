@@ -1,0 +1,83 @@
+<!--
+  Generated template for the ViewreportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+      
+            <ion-buttons right > 
+                <button ion-button (click)="closeReport()"><ion-icon style="zoom:1.5;" name="close" color="light"></ion-icon></button>
+                </ion-buttons>
+        <ion-title> {{selectedFromdate}} - {{selectedToDate}}</ion-title>
+        
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let expense of expenses; let i=index">
+         
+            <ion-item >
+               
+                 <h3>{{expense.date }}</h3>
+                  <span>{{expense.description}}</span>
+                  
+               
+                <h3 ion-text  color=expense-color   item-end>
+                    <h3 ion-text  [color]="expense.type==='Expense' ? 'expense-color' : 'income-color'"   item-end>
+                        {{getCurrency(expense.amount)}}
+                      </h3>
+                </h3>
+              </ion-item>
+    
+              <ion-item-options side="right">
+                  <button ion-button color="primary" >
+                    <ion-icon name="paper"></ion-icon>
+                  </button>
+                  <button ion-button color="danger" (click)="deleteTransactionData(expense.rowid)" >
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                </ion-item-options>
+            </ion-item-sliding> 
+        </ion-list>
+
+</ion-content>
+<ion-footer>
+
+    
+    <ion-grid class="total-expense-card">
+
+        <ion-row  >
+            <ion-col  center text-center  width-25>Total Income</ion-col>
+            
+
+            <ion-col  center text-center  width-25>Total Expense</ion-col>
+            <ion-col  center text-center  width-40>Total Balance</ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col id="card-divder-border" center text-center width-25>
+                <span  ion-text color="income-color">{{getCurrency(totalIncome )}}</span></ion-col>
+              <ion-col id="card-divder-border" center text-center width-25><span  ion-text color="expense-color">{{getCurrency(totalExpense)}}</span></ion-col>
+              <ion-col  center text-center width-50><span  ion-text color="balance-color">{{getCurrency(balance)}}</span></ion-col>
+            </ion-row>
+          </ion-grid>
+  
+
+      <ion-grid>
+
+          
+           
+             
+            </ion-grid>
+  
+ 
+
+</ion-footer>
+
+
