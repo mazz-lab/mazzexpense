@@ -11,7 +11,7 @@
             <ion-buttons right > 
                 <button ion-button (click)="closeReport()"><ion-icon style="zoom:1.5;" name="close" color="light"></ion-icon></button>
                 </ion-buttons>
-        <ion-title> {{selectedFromdate}} - {{selectedToDate}}</ion-title>
+        <ion-title> {{selectedFromdate | date :  "dd/MMM/yyyy"}} - {{selectedToDate | date :  "dd/MMM/yyyy"}}</ion-title>
         
     </ion-navbar>
 
@@ -24,7 +24,7 @@
          
             <ion-item >
                
-                 <h3>{{expense.date }}</h3>
+                 <h3>{{expense.date | date :  "dd/MMM/yyyy" }}</h3>
                   <span>{{expense.description}}</span>
                   
                
