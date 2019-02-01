@@ -11,7 +11,31 @@
             <ion-buttons right > 
                 <button ion-button (click)="closeReport()"><ion-icon style="zoom:1.5;" name="close" color="light"></ion-icon></button>
                 </ion-buttons>
-        <ion-title text-center> {{selectedFromdate | date :  "dd/MMM/yyyy"}} - {{selectedToDate | date :  "dd/MMM/yyyy"}}</ion-title>
+        <ion-title >
+                <ion-grid class="header-from-to">
+
+                        <ion-row  >
+                            <ion-col  center text-center  width-50> 
+                                <ion-label (click)="openFromDatepicker()">{{fromDate}}
+
+                                </ion-label>
+                            </ion-col>
+                                <!-- <ion-input disabled="true" color="light" type="text" name="fromDate"  [(ngModel)]="fromDate" ng-readonly></ion-input></ion-col> -->
+                         
+                            <ion-col  center text-center  width-50>
+                                    <ion-label (click)="openToDatepicker()">{{toDate}}
+
+                                    </ion-label>
+                                    <!-- <ion-input disabled="true" type="text" name="toDate" (click)="openToDatepicker()" [(ngModel)]="toDate" ng-readonly></ion-input> -->
+
+                            </ion-col>
+                        </ion-row>
+                            </ion-grid>
+            
+              
+         
+        
+        </ion-title>
         
     </ion-navbar>
 

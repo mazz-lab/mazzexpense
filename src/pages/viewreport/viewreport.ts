@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams,ViewController ,AlertController} fr
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatePipe,CurrencyPipe } from '@angular/common';
 import { UtilProvider } from '../../providers/util/util';
+import { DatePicker } from '@ionic-native/date-picker';
 
 
 @IonicPage()
@@ -24,29 +25,80 @@ export class ViewreportPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl : ViewController,
     private sqlite: SQLite,public datepipe: DatePipe,private currencyPipe: CurrencyPipe
-    , public util: UtilProvider,public  alertCtrl: AlertController) {
+    , public util: UtilProvider,public  alertCtrl: AlertController,private datePicker: DatePicker,) {
   }
 
   getCurrency(amount: number) {
     return this.currencyPipe.transform(this.util.getNumber(amount), 'INR', true, '1.2-2');
   }
+  fromDate : any ;
+  toDate : any 
+
+  fromDDate : any;
+  toDDate : any;
+
+  ionViewWillEnter() {
+    this.fromDate  =this.datepipe.transform(new Date(), 'dd/MM/yyyy');
+  this.toDate  =this.datepipe.transform(new Date(), 'dd/MM/yyyy');
+
+  this.fromDDate =this.datepipe.transform(this.fromDate, 'yyyy-MM-dd');
+  this.toDDate =this.datepipe.transform(this.toDate, 'yyyy-MM-dd');
+    // this.titlename=this.navParams.get('pagename');
+     this.getTransactionData();
+   }
 
   ionViewDidLoad() {
-    this.selectedFromdate=this.navParams.get('fromDate');
-    this.selectedToDate=this.navParams.get('toDate');
+    // this.selectedFromdate=this.navParams.get('fromDate');
+    // this.selectedToDate=this.navParams.get('toDate');
 
     // this.selectedDbFromdate=this.datepipe.transform(this.selectedFromdate, 'yyyy-MM-dd');
     // this.selectedDbToDate=this.datepipe.transform(this.selectedToDate, 'yyyy-MM-dd');
 
-    console.log("selectedDbFromdate.."+this.selectedDbFromdate);
-    console.log("selectedDbToDate.."+this.selectedDbToDate);
+    // console.log("selectedDbFromdate.."+this.selectedDbFromdate);
+    // console.log("selectedDbToDate.."+this.selectedDbToDate);
     this.getTransactionData();
   }
+  
+ 
+  
 
-  ionViewWillEnter() {
-   // this.titlename=this.navParams.get('pagename');
-   // this.getTransactionData();
+    
+  openFromDatepicker(){
+  //  this.keyboard.close();
+    this.datePicker.show({
+      date: new Date(this.fromDate),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      date => {
+  this.fromDate=this.datepipe.transform(date, 'dd/MM/yyyy');
+  this.fromDDate=this.datepipe.transform(date, 'yyyy-MM-dd');
+  this.getTransactionData();
+  
+  console.log("this.fromDate.."+this.fromDate);
+       },
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
+
+  openToDatepicker(){
+    //  this.keyboard.close();
+      this.datePicker.show({
+        date: new Date(this.toDDate),
+        mode: 'date',
+        androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+      }).then(
+        date => {
+            this.toDate=this.datepipe.transform(date, 'dd/MM/yyyy');
+            this.toDDate=this.datepipe.transform(date, 'yyyy-MM-dd');
+            this.getTransactionData();
+            console.log("this.toDate.."+this.toDate);
+         },
+        err => console.log('Error occurred while getting date: ', err)
+      );
+    }
+
+  
 
 
   public closeReport(){
@@ -61,7 +113,7 @@ getTransactionData() {
     db.executeSql('CREATE TABLE IF NOT EXISTS expense(rowid INTEGER PRIMARY KEY, date TEXT, type TEXT,description TEXT, amount INT)', [])
       .then(res => console.log('Executed SQL'))
       .catch(e => console.log(e));
-    db.executeSql('SELECT * FROM expense WHERE  date >= "'+this.selectedFromdate+'" and date <= "'+this.selectedToDate+'" ORDER BY rowid DESC ', [])
+    db.executeSql('SELECT * FROM expense WHERE  date >= "'+this.fromDDate+'" and date <= "'+this.toDDate+'" ORDER BY rowid DESC ', [])
       .then(res => {
         this.expenses = [];
         for (var i = 0; i < res.rows.length; i++) {
@@ -69,7 +121,7 @@ getTransactionData() {
         }
       })
       .catch(e => console.log(e));
-    db.executeSql('SELECT SUM(amount) AS totalIncome FROM expense WHERE type="Income" and date >= "'+this.selectedFromdate+'" and date <= "'+this.selectedToDate+'"', [])
+    db.executeSql('SELECT SUM(amount) AS totalIncome FROM expense WHERE type="Income" and date >= "'+this.fromDDate+'" and date <= "'+this.toDDate+'"', [])
       .then(res => {
         if (res.rows.length > 0) {
           this.totalIncome = parseInt(res.rows.item(0).totalIncome);
@@ -77,7 +129,7 @@ getTransactionData() {
         }
       })
       .catch(e => console.log(e));
-    db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date >= "'+this.selectedFromdate+'" and date <= "'+this.selectedToDate+'"', [])
+    db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense" and date >= "'+this.fromDDate+'" and date <= "'+this.toDDate+'"', [])
       .then(res => {
         if (res.rows.length > 0) {
           this.totalExpense = parseInt(res.rows.item(0).totalExpense);

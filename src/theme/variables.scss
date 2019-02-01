@@ -158,6 +158,24 @@ $font-size : 1px ! important;
 
 }
 
+.header-from-to{
+  padding: 0%;
+
+  ion-col{
+      font-size:12px;
+      font-weight: 800;
+      
+
+      ion-input{
+
+        color: map-get($colors, light);
+
+      }
+
+  }
+
+}
+
 // FAB Start
 
 .fablabelexpense
